@@ -54,6 +54,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Card.cs" />
+    <Compile Include="Assets\Scripts\CardData.cs" />
+    <Compile Include="Assets\Scripts\CardAction.cs" />
+    <Compile Include="Assets\Scripts\CardActions\CardActionPurchase.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
