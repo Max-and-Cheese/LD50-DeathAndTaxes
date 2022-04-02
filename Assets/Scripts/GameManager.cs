@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     private int money;
+    private int health;
+    private int police;
+
     public int Money {
         get { return money; }
         private set {
@@ -16,6 +19,13 @@ public class GameManager : MonoBehaviour
             money = value;
         }
     }
+
+    public int Health { get => health; set { health = value; OnHealthUpdated.Invoke(value); } }
+
+    public int Police { get => police; set { police = value; OnPoliceUpdated.Invoke(value); } }
+
+    public HealthUpdateEvent OnHealthUpdated;
+    public PoliceUpdateEvent OnPoliceUpdated;
     public MoneyUpdateEvent OnMoneyUpdated;
     public DiscountUpdateEvent OnDiscountUpdated;
 
@@ -74,13 +84,23 @@ public class GameManager : MonoBehaviour
         activeDiscounts.Remove(type);
     }
 
-
-    void Start() {
+    void OnEnable() {
         Instance = this;
         if (OnMoneyUpdated == null)
             OnMoneyUpdated = new MoneyUpdateEvent();
         if (OnDiscountUpdated == null)
             OnDiscountUpdated = new DiscountUpdateEvent();
+        if (OnPoliceUpdated == null)
+            OnPoliceUpdated = new PoliceUpdateEvent();
+        if (OnHealthUpdated == null) 
+            OnHealthUpdated = new HealthUpdateEvent();
+        
+    }
+
+    void Start() {
+        Health = 100;
+        Police = 0;
+        Money = 1000;
     }
 
     // Update is called once per frame
@@ -93,6 +113,14 @@ public class GameManager : MonoBehaviour
 
 [System.Serializable]
 public class MoneyUpdateEvent : UnityEvent<int> { }
+
+[System.Serializable]
+public class HealthUpdateEvent : UnityEvent<int> { }
+
+[System.Serializable]
+public class PoliceUpdateEvent : UnityEvent<int> { }
+
+
 
 [System.Serializable]
 public class DiscountUpdateEvent : UnityEvent<GameManager.CardType> { }

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52933182423e4e4285e42af87455146, type: 3}
   m_Name: Test Card
   m_EditorClassIdentifier: 
-  cardName: 
-  cardDescription: 
-  cardIcon: {fileID: 0}
+  cardName: Meme
+  cardDescription: +20 Bruh
+  cardIcon: {fileID: 21300000, guid: 898ea0f2512b10e40b91c62e9208c9a1, type: 3}
   type: 0
-  selectActions: []
+  selectActions:
+  - {fileID: 11400000, guid: ed9337cd95d89ee4e80c56250ddd7a96, type: 2}
   avoidActions: []
