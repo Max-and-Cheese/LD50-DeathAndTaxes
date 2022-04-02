@@ -11,15 +11,12 @@ public class PlayerHandManager : MonoBehaviour {
     private int targetPadding = -100;
     private int targetSpacing = -150;
     private float duration = 3;
-    //private float timer = 0;
     // Start is called before the first frame update
     void Start() {
     }
 
     // Update is called once per frame
     void Update() {
-        //group.padding.bottom = Mathf.CeilToInt(Mathf.Lerp(group.padding.bottom, targetPadding, timer / duration));
-        //timer = timer + Time.deltaTime;
     }
 
     public void ShowHand() {
@@ -38,7 +35,6 @@ public class PlayerHandManager : MonoBehaviour {
     }
 
     private IEnumerator HandRoutine() {
-        print("Routine Started");
         float timer = 0;
         while (group.padding.bottom != targetPadding) {
         print(timer);
