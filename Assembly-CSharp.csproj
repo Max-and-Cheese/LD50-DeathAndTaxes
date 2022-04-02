@@ -58,7 +58,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerHandManager.cs" />
-    <Compile Include="Assets\MainMenuHandler.cs" />
+    <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
+    <Compile Include="Assets\Scripts\CardAction.cs" />
+    <Compile Include="Assets\Scripts\Card.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\CardData.cs" />
+    <Compile Include="Assets\Scripts\CardActions\CardActionPurchase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
