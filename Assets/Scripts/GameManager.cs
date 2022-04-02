@@ -1,33 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    
+    private int money = 50;
+    private int health = 100;
+    private int police = 0;
 
-    private int money;
-    private int health;
-    private int police;
+    public int Money { get { return money; } private set { money = value; if (value != money) OnMoneyUpdated?.Invoke(value);  } }
 
-    public int Money {
-        get { return money; }
-        private set {
-            if (value != money)
-                OnMoneyUpdated?.Invoke(value);
-            money = value;
-        }
-    }
+    public int Health { get => health; set { if (value ==  0 ) { EndGameDeath();  } else if (value > 0 && value <= 100) { health = value; OnHealthUpdated?.Invoke(value); } } }
 
-    public int Health { get => health; set { health = value; OnHealthUpdated.Invoke(value); } }
+    public int Police { get => police; set { if (value == 100) { EndGameCaught(); } else if (value >= 0 && value < 100) { police = value; OnPoliceUpdated?.Invoke(value); } } }
 
-    public int Police { get => police; set { police = value; OnPoliceUpdated.Invoke(value); } }
+    public bool GAME_OVER = false;
 
     public HealthUpdateEvent OnHealthUpdated;
     public PoliceUpdateEvent OnPoliceUpdated;
     public MoneyUpdateEvent OnMoneyUpdated;
     public DiscountUpdateEvent OnDiscountUpdated;
+    public UnityEvent OnGameOverEvent;
 
     //If a negative value is inputed, the function acts like SpendMoney(int)
     public bool AddMoney(int count) {
@@ -59,7 +57,9 @@ public class GameManager : MonoBehaviour
         HEALTH,
         TAX,
         CARD_EFFECT,
-        STATUS_EFFECT
+        STATUS_EFFECT,
+        POLICE,
+        CURSED
     };
 
     private Dictionary<CardType, float> activeDiscounts;
@@ -84,7 +84,20 @@ public class GameManager : MonoBehaviour
         activeDiscounts.Remove(type);
     }
 
-    void OnEnable() {
+    private void EndGameDeath() {
+        GameOver();
+    }
+
+    private void EndGameCaught() {
+        GameOver();
+    }
+
+    private void GameOver() {
+        GAME_OVER = true;
+        OnGameOverEvent?.Invoke();
+    }
+
+    private void Awake() {
         Instance = this;
         if (OnMoneyUpdated == null)
             OnMoneyUpdated = new MoneyUpdateEvent();
@@ -92,23 +105,23 @@ public class GameManager : MonoBehaviour
             OnDiscountUpdated = new DiscountUpdateEvent();
         if (OnPoliceUpdated == null)
             OnPoliceUpdated = new PoliceUpdateEvent();
-        if (OnHealthUpdated == null) 
+        if (OnHealthUpdated == null)
             OnHealthUpdated = new HealthUpdateEvent();
-        
+        if (OnGameOverEvent == null)
+            OnGameOverEvent = new UnityEvent();
     }
 
     void Start() {
-        Health = 100;
-        Police = 0;
-        Money = 1000;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     
+
+
 }
 
 [System.Serializable]

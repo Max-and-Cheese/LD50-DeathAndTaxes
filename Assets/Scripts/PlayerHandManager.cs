@@ -20,6 +20,7 @@ public class PlayerHandManager : MonoBehaviour {
     }
 
     public void ShowHand() {
+        if (GameManager.Instance.GAME_OVER) return;
         StopAllCoroutines();
         targetPadding = 10;
         targetSpacing = 30;
@@ -28,6 +29,7 @@ public class PlayerHandManager : MonoBehaviour {
     }
 
     public void HideHand() {
+        if (GameManager.Instance.GAME_OVER) return;
         StopAllCoroutines();
         targetPadding = -100;
         targetSpacing = -150;

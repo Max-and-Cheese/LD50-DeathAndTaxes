@@ -26,4 +26,8 @@ public class Card : MonoBehaviour {
     void Update() {
 
     }
+
+    public void OnClicked() {
+        if (GameManager.Instance.GAME_OVER) return;
+    }
 }
