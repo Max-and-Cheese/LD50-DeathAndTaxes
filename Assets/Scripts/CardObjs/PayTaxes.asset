@@ -16,7 +16,7 @@ MonoBehaviour:
   cardIcon: {fileID: 21300000, guid: a1a15dfe87ce3fb4f9e4e3f815c384c6, type: 3}
   type: 1
   selectActions:
-  - {fileID: 11400000, guid: f6aca98480c66a74dae780ed9a0a8bb4, type: 2}
-  - {fileID: 11400000, guid: 5e7bc48ed45501349a9180f6e0ad95ae, type: 2}
+  - {fileID: 11400000, guid: e03088e305835a540909d781a1679992, type: 2}
+  - {fileID: 11400000, guid: 1f0c3a9c6146cee4191f818d106c6525, type: 2}
   avoidActions:
-  - {fileID: 11400000, guid: 96815960cde7f4647bf23cdd28d5a04d, type: 2}
+  - {fileID: 11400000, guid: 58d2abb0994cbb046ba0cec363a2c7b0, type: 2}

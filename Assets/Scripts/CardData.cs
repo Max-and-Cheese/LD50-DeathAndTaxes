@@ -9,7 +9,7 @@ public class CardData : ScriptableObject {
     public GameManager.CardType type;
 
     public CardAction[] selectActions;
-    public CardAction[] avoidActions;
+    public CardAction[] avoidActions; 
 
     public void RunActions (bool wasSelected) {
         if (wasSelected) {
