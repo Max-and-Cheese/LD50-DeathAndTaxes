@@ -12,9 +12,12 @@ public class EndOfDayManager : MonoBehaviour
     public TMP_Text incomeText;
     public TMP_Text summaryText;
     public Button continueButton;
+    public GameObject blackBackground;
     
     private void Awake() {
         Instance = this;
+        blackBackground.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void OnContinue() {
@@ -43,7 +46,7 @@ public class EndOfDayManager : MonoBehaviour
     public void ShowPanel() {
         gameObject.SetActive(true);
         titleText.text = "End of day " + GameManager.Instance.DayCount.ToString();
-        incomeText.text = "End of day " + GameManager.Instance.RevenueOfDay.ToString();
+        incomeText.text = "You earned " + GameManager.Instance.RevenueOfDay.ToString() + "$";
 
         targetPosition = 0;
         setToHide = false;

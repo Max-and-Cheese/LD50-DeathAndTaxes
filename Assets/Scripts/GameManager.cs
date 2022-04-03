@@ -25,10 +25,10 @@ public class GameManager : MonoBehaviour {
     private int turnClicks = 1;
     public int TurnClicks { get => turnClicks; set { turnClicks = value; if (value == 0) { TurnEnded(); } } }
 
-    public int DayCount { get; private set; } = 0;
+    public int DayCount { get; private set; } = 1;
 
     public int RevenueOfDay { get; private set; }
-    public int DailyRevenue { get; set; } = 10;
+    public int DailyRevenue { get; set; } = 50;
 
     public HealthUpdateEvent OnHealthUpdated;
     public PoliceUpdateEvent OnPoliceUpdated;
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour {
     private void TurnEnded() {
         DeckManager.Instance.RunAvoidedCards();
         RevenueOfDay += DailyRevenue;
-
+        
         EndOfDayManager.Instance.ShowPanel();
 
         //change day
@@ -151,7 +151,6 @@ public class GameManager : MonoBehaviour {
 
     public void RestartDay() {
         CashInRevenueOfDay();
-
         DayCount++;
         DeckManager.Instance.ShuffleDeck();
         OpportunityController.Instance.AttemptOpportunity();

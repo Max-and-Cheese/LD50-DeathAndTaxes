@@ -27,10 +27,9 @@ public class Card : MonoBehaviour {
             cardImage.sprite = data.cardIcon;
         }
     }
-
-    // Update is called once per frame
-    void Update() {
-
+    
+    void Start() {
+        SetUpData();
     }
 
     public void RunCardActions(bool wasSelected) {

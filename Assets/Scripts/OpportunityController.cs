@@ -8,23 +8,19 @@ public class OpportunityController : MonoBehaviour {
     public static OpportunityController Instance { get; private set; }
 
     public RectTransform cardPanel;
+    public GameObject blackBackground;
     private float targetPosition = 0;
     private float duration = 3;
     private bool setToHide = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
+    
+    void Awake(){
         Instance = this;
-    }
-
-    // Update is called once per frame
-    void Update() {
-
+        blackBackground.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     void OnEnable() {
-        ShowPanel();
+        //ShowPanel();
 
     }
 
