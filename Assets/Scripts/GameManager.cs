@@ -5,17 +5,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
-    
+
     private int money = 100;
     private int health = 100;
     private int police = 0;
 
-    public int Money { get { return money; } private set { money = value; OnMoneyUpdated?.Invoke(value);  } }
+    public int Money { get { return money; } private set { money = value; OnMoneyUpdated?.Invoke(value); } }
 
-    public int Health { get => health; set { if (value ==  0 ) { EndGameDeath();  } else if (value > 0 && value <= 100) { health = value; OnHealthUpdated?.Invoke(value); } } }
+    public int Health { get => health; set { if (value == 0) { EndGameDeath(); } else if (value > 0 && value <= 100) { health = value; OnHealthUpdated?.Invoke(value); } } }
 
     public int Police { get => police; set { if (value == 100) { EndGameCaught(); } else if (value >= 0 && value < 100) { police = value; OnPoliceUpdated?.Invoke(value); } } }
 
@@ -27,7 +26,7 @@ public class GameManager : MonoBehaviour
     public int TurnClicks { get => turnClicks; set { turnClicks = value; if (value == 0) { TurnEnded(); } } }
 
     public int DayCount { get; private set; } = 0;
-    
+
     private int revenueOfDay;
     public int DailyRevenue { get; set; } = 10;
 
@@ -62,7 +61,6 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-
     public enum CardType {
         HEALTH,
         TAX,
@@ -71,67 +69,6 @@ public class GameManager : MonoBehaviour
         POLICE,
         CURSED
     };
-
-    private Dictionary<CardType, float> activeDiscounts = new Dictionary<CardType, float>();
-
-    public float GetDiscountForType (CardType type) {
-        bool isDiscount = activeDiscounts.TryGetValue(type, out float discount);
-        return isDiscount ? discount : 1;
-    }
-
-    public void AddDiscount (CardType type, float discount) {
-        OnDiscountUpdated?.Invoke(type);
-        bool isDiscount = activeDiscounts.TryGetValue(type, out float existingDiscount);
-        if (isDiscount) {
-            activeDiscounts.Add(type, existingDiscount * discount);
-        } else {
-            activeDiscounts.Add(type, discount);
-        }
-    }
-
-    public void AddTemporalDiscount(CardType type, float discount, int turnLength) {
-        AddDiscount(type, discount);
-    }
-
-    public void ClearDiscount(CardType type) {
-        OnDiscountUpdated?.Invoke(type);
-        activeDiscounts.Remove(type);
-    }
-
-    private void EndGameDeath() {
-        GameOver();
-    }
-
-    private void EndGameCaught() {
-        GameOver();
-    }
-
-    private void GameOver() {
-        GAME_OVER = true;
-        OnGameOverEvent?.Invoke();
-    }
-
-    private void TurnEnded() {
-        DeckManager.Instance.RunAvoidedCards();
-        revenueOfDay += DailyRevenue;
-
-        EndOfDayManager.Instance.gameObject.SetActive(true);
-
-        //change day
-        turnClicks = 1;
-    }
-
-    public void RestartDay() {
-        CashInRevenueOfDay();
-        DayCount++;
-        DeckManager.Instance.ShuffleDeck();
-        OpportunityController.Instance.AttemptOpportunity();
-    }
-
-    private void CashInRevenueOfDay() {
-        Money += revenueOfDay;
-        revenueOfDay = 0;
-    }
 
     private void Awake() {
         Instance = this;
@@ -151,8 +88,97 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+
+    }
+
+
+    //DISCOUNTS
+
+    private Dictionary<CardType, float> activeDiscounts = new Dictionary<CardType, float>();
+
+    public float GetDiscountForType(CardType type) {
+        bool isDiscount = activeDiscounts.TryGetValue(type, out float discount);
+        return isDiscount ? discount : 1;
+    }
+
+    public void AddDiscount(CardType type, float discount) {
+        OnDiscountUpdated?.Invoke(type);
+        bool isDiscount = activeDiscounts.TryGetValue(type, out float existingDiscount);
+        if (isDiscount) {
+            activeDiscounts.Add(type, existingDiscount * discount);
+        } else {
+            activeDiscounts.Add(type, discount);
+        }
+    }
+
+    public void AddTemporalDiscount(CardType type, float discount, int turnLength) {
+        AddDiscount(type, discount);
+    }
+
+    public void ClearDiscount(CardType type) {
+        OnDiscountUpdated?.Invoke(type);
+        activeDiscounts.Remove(type);
+    }
+
+
+    //GAME OVER AND RESET
+
+    private void EndGameDeath() {
+        GameOver();
+    }
+
+    private void EndGameCaught() {
+        GameOver();
+    }
+
+    private void GameOver() {
+        GAME_OVER = true;
+        OnGameOverEvent?.Invoke();
+    }
+
+
+    private void TurnEnded() {
+        DeckManager.Instance.RunAvoidedCards();
+        revenueOfDay += DailyRevenue;
+
+        EndOfDayManager.Instance.gameObject.SetActive(true);
+
+        //change day
+        turnClicks = 1;
+    }
+
+    public void RestartDay() {
+        CashInRevenueOfDay();
+
+        DayCount++;
+        DeckManager.Instance.ShuffleDeck();
+        OpportunityController.Instance.AttemptOpportunity();
+    }
+
+    private void CashInRevenueOfDay() {
+        Money += revenueOfDay;
+        revenueOfDay = 0;
+    }
+
+
+    // TIMED EVENTS
+
+    private List<TimedAction> timedActions = new List<TimedAction>();
+
+    public void AddTimedAction(Action action, int waitDays) {
+        timedActions.Add(new TimedAction(action, DayCount, waitDays));
+    }
+
+    private void CheckForActions() {
+        List<TimedAction> runActions = new List<TimedAction>();
+        foreach (TimedAction timedAction in timedActions) {
+            if (timedAction.CanExecute(DayCount)) {
+                timedAction.ExecuteAction();
+                runActions.Add(timedAction);
+            }
+        }
+        timedActions.RemoveAll(ta=>runActions.Contains(ta));
 
     }
     
@@ -171,3 +197,27 @@ public class PoliceUpdateEvent : UnityEvent<int> { }
 
 [System.Serializable]
 public class DiscountUpdateEvent : UnityEvent<GameManager.CardType> { }
+
+public class TimedAction {
+    private int dayStarted;
+    private int waitLength;
+    private Action action;
+    public TimedAction (Action action, int start, int length) {
+        this.action = action;
+        dayStarted = start;
+        waitLength = length;
+    }
+
+    public bool CanExecute(int currentDay) {
+        return currentDay - dayStarted > waitLength;
+    }
+
+    public void ExecuteAction() {
+        action.Execute();
+    }
+
+}
+
+public abstract class Action {
+    public abstract void Execute();
+}
