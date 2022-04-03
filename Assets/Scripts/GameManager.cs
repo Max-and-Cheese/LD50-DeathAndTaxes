@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
 
     public int DayCount { get; private set; } = 0;
 
-    private int revenueOfDay;
+    public int RevenueOfDay { get; private set; }
     public int DailyRevenue { get; set; } = 10;
 
     public HealthUpdateEvent OnHealthUpdated;
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour {
         DeckManager.Instance.RunAvoidedCards();
         revenueOfDay += DailyRevenue;
 
-        EndOfDayManager.Instance.gameObject.SetActive(true);
+        EndOfDayManager.Instance.ShowPanel();
 
         //change day
         turnClicks = 1;

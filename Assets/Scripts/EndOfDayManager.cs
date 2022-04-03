@@ -12,23 +12,47 @@ public class EndOfDayManager : MonoBehaviour
     public TMP_Text incomeText;
     public TMP_Text summaryText;
     public Button continueButton;
-
-    private void OnEnable() {
-        titleText.text = "End of day "+GameManager.Instance.DayCount.ToString();
-        incomeText.text = "End of day "+GameManager.Instance.DayCount.ToString();
-    }
-
+    
     private void Awake() {
         Instance = this;
-    }
-    
-    void Start()
-    {
     }
 
     public void OnContinue() {
         GameManager.Instance.RestartDay();
-        gameObject.SetActive(false);
+        HidePanel();
+    }
+
+    public RectTransform dayPanel;
+    private float targetPosition = 0;
+    private float duration = 30;
+    private bool setToHide = false;
+
+    private IEnumerator AnimatePanelRoutine() {
+        float timer = 0;
+        while (Mathf.Floor(dayPanel.anchoredPosition.y) != targetPosition) {
+            dayPanel.anchoredPosition = new Vector2(0, Mathf.Lerp(dayPanel.anchoredPosition.y, targetPosition, timer / duration));
+            timer += Time.deltaTime;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(dayPanel);
+            yield return null;
+        }
+        if (setToHide) {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowPanel() {
+        gameObject.SetActive(true);
+        titleText.text = "End of day " + GameManager.Instance.DayCount.ToString();
+        incomeText.text = "End of day " + GameManager.Instance.RevenueOfDay.ToString();
+
+        targetPosition = 0;
+        setToHide = false;
+        StartCoroutine(AnimatePanelRoutine());
+    }
+    public void HidePanel() {
+        targetPosition = -400;
+        setToHide = true;
+        StartCoroutine(AnimatePanelRoutine());
     }
 
 }
