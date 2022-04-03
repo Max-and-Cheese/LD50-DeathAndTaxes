@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public bool GAME_OVER = false;
 
+    private int dayCount = 1;
+
     public HealthUpdateEvent OnHealthUpdated;
     public PoliceUpdateEvent OnPoliceUpdated;
     public MoneyUpdateEvent OnMoneyUpdated;

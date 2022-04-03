@@ -142,8 +142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pay Taxes
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 00f5ff4d758cbea41a68cd0510d986f6, type: 2}
-  m_sharedMaterial: {fileID: -5540364193279181846, guid: 00f5ff4d758cbea41a68cd0510d986f6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 181d32c38ddfbf54d9485780970b9892, type: 2}
+  m_sharedMaterial: {fileID: -2123119711425155136, guid: 181d32c38ddfbf54d9485780970b9892, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -465,8 +465,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: -50$
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 00f5ff4d758cbea41a68cd0510d986f6, type: 2}
-  m_sharedMaterial: {fileID: -5540364193279181846, guid: 00f5ff4d758cbea41a68cd0510d986f6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 181d32c38ddfbf54d9485780970b9892, type: 2}
+  m_sharedMaterial: {fileID: -2123119711425155136, guid: 181d32c38ddfbf54d9485780970b9892, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -490,8 +490,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
-  m_fontSizeBase: 8
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
