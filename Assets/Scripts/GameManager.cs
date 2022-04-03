@@ -83,6 +83,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddTemporalDiscount(CardType type, float discount, int turnLength) {
+        AddDiscount(type, discount);
+    }
+
     public void ClearDiscount(CardType type) {
         OnDiscountUpdated?.Invoke(type);
         activeDiscounts.Remove(type);
