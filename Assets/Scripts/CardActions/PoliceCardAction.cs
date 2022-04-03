@@ -14,9 +14,7 @@ public class PoliceCardAction : CardAction
         policeValue = Random.Range(minPoliceValue, maxPoliceValue + 1);
     }
 
-    public override bool CanDoAction(CardData data) {
-        return GameManager.Instance.Police + policeValue >= 0;
-    }
+    public override bool CanDoAction(CardData data) { return true; }
 
     public override void DoAction(CardData data) {
         GameManager.Instance.Police += policeValue;

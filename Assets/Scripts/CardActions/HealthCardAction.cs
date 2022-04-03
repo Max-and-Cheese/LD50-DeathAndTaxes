@@ -14,9 +14,7 @@ public class HealthCardAction : CardAction
         healthValue = Random.Range(minHealthValue, maxHealthValue + 1);
     }
 
-    public override bool CanDoAction(CardData data) {
-        return GameManager.Instance.Health + healthValue >= 0;
-    }
+    public override bool CanDoAction(CardData data) { return true; }
 
     public override void DoAction(CardData data) {
         GameManager.Instance.Health += healthValue;

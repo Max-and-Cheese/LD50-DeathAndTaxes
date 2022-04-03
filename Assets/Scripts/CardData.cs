@@ -11,7 +11,7 @@ public class CardData : ScriptableObject {
     public CardAction[] selectActions;
     public CardAction[] avoidActions;
 
-    public void RunAction (bool wasSelected) {
+    public void RunActions (bool wasSelected) {
         if (wasSelected) {
             if (selectActions != null && selectActions.Length > 0) {
                 if (CanSelect()) {
@@ -32,12 +32,16 @@ public class CardData : ScriptableObject {
     }
 
     public void Setup() {
-        foreach (CardAction action in selectActions) 
-            action.SetUpAction(this);
-        
-        foreach (CardAction action in avoidActions) 
-            action.SetUpAction(this);
-        
+        for (int i=0; i<selectActions.Length; i++) {
+            selectActions[i] = Instantiate(selectActions[i]);
+            selectActions[i].SetUpAction(this);
+        }
+
+        for (int i = 0; i < avoidActions.Length; i++) {
+            avoidActions[i] = Instantiate(avoidActions[i]);
+            avoidActions[i].SetUpAction(this);
+        }
+
     }
 
     public bool CanSelect() {

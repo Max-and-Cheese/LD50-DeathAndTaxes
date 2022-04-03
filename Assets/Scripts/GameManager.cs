@@ -9,11 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     
-    private int money = 50;
+    private int money = 100;
     private int health = 100;
     private int police = 0;
 
-    public int Money { get { return money; } private set { money = value; if (value != money) OnMoneyUpdated?.Invoke(value);  } }
+    public int Money { get { return money; } private set { money = value; OnMoneyUpdated?.Invoke(value);  } }
 
     public int Health { get => health; set { if (value ==  0 ) { EndGameDeath();  } else if (value > 0 && value <= 100) { health = value; OnHealthUpdated?.Invoke(value); } } }
 
@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public int Karma { get; set; }
 
     public bool GAME_OVER = false;
+
+    private int turnClicks = 1;
+    public int TurnClicks { get => turnClicks; set { turnClicks = value; if (value == 0) { TurnEnded(); } } }
 
     public HealthUpdateEvent OnHealthUpdated;
     public PoliceUpdateEvent OnPoliceUpdated;
@@ -101,6 +104,12 @@ public class GameManager : MonoBehaviour
     private void GameOver() {
         GAME_OVER = true;
         OnGameOverEvent?.Invoke();
+    }
+
+    private void TurnEnded() {
+        DeckManager.Instance.RunAvoidedCards();
+        //change day
+        turnClicks = 1;
     }
 
     private void Awake() {

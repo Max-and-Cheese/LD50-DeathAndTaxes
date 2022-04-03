@@ -30,6 +30,7 @@ public class StatusHandler : MonoBehaviour
     }
 
     private void SetMoney(int money) {
+        Debug.Log(money);
         moneyText.text = $"${money}";
     }
 

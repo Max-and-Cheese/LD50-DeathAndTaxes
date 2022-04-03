@@ -56,11 +56,10 @@
     <Compile Include="Assets\Scripts\PlayerHandManager.cs" />
     <Compile Include="Assets\Scripts\CardActions\PurchaseCardAction.cs" />
     <Compile Include="Assets\Scripts\CardData.cs" />
-    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\DeckManager.cs" />
     <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
-    <Compile Include="Assets\StatusHandler.cs" />
+    <Compile Include="Assets\Scripts\StatusHandler.cs" />
     <Compile Include="Assets\Scripts\CardAction.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
@@ -68,6 +67,7 @@
     <Compile Include="Assets\Scripts\CardActions\KarmaCardAction.cs" />
     <Compile Include="Assets\Scripts\CardActions\HealthCardAction.cs" />
     <Compile Include="Assets\Scripts\CardActions\DiscountCardAction.cs" />
+    <Compile Include="Assets\Scripts\CardActions\AddTurnsCardAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
