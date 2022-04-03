@@ -39,7 +39,6 @@ public class PlayerHandManager : MonoBehaviour {
     private IEnumerator HandRoutine() {
         float timer = 0;
         while (group.padding.bottom != targetPadding) {
-        print(timer);
             group.padding.bottom = Mathf.CeilToInt(Mathf.Lerp(group.padding.bottom, targetPadding, timer / duration));
             group.spacing = Mathf.CeilToInt(Mathf.Lerp(group.spacing, targetSpacing, timer / duration));
             timer = timer + Time.deltaTime;
