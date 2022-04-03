@@ -16,8 +16,8 @@ public class Card : MonoBehaviour {
     public Image cardImage;
 
     public CardData data;
-    // Start is called before the first frame update
-    void Start() {
+
+    public void SetUpData() {
         if (data) {
             data = Instantiate(data);
             data.Setup();

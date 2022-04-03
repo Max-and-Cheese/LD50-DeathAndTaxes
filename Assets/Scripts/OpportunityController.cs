@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class OpportunityController : MonoBehaviour
 {
+    public static OpportunityController Instance { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -15,4 +17,9 @@ public class OpportunityController : MonoBehaviour
     {
         
     }
+
+    public void AttemptOpportunity() {
+
+    }
+
 }
