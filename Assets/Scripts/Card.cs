@@ -29,5 +29,9 @@ public class Card : MonoBehaviour {
 
     public void OnClicked() {
         if (GameManager.Instance.GAME_OVER) return;
+
+        if (data.CanSelect()) {
+
+        }
     }
 }

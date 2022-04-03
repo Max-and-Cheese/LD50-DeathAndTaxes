@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 188834923}
   - component: {fileID: 188834922}
   - component: {fileID: 188834921}
+  - component: {fileID: 188834924}
   m_Layer: 5
   m_Name: CardsPanel
   m_TagString: Untagged
@@ -521,6 +522,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188834919}
   m_CullTransparentMesh: 1
+--- !u!114 &188834924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188834919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb8da7f267a3bc4daaaa9d6ef2d2b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &190552409
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,8 +605,6 @@ GameObject:
   - component: {fileID: 223980271}
   - component: {fileID: 223980270}
   - component: {fileID: 223980269}
-  - component: {fileID: 223980274}
-  - component: {fileID: 223980273}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -683,38 +694,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &223980273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223980267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a064b59c95052d04ab8724cd728dd310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyRenderText: {fileID: 616478523}
-  healthSlider: {fileID: 458862279}
-  policeSlider: {fileID: 567010698}
-  gameOverGroup: {fileID: 0}
---- !u!114 &223980274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223980267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a064b59c95052d04ab8724cd728dd310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyRenderText: {fileID: 0}
-  healthSlider: {fileID: 0}
-  policeSlider: {fileID: 0}
-  gameOverGroup: {fileID: 0}
 --- !u!1001 &251786319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2710,6 +2689,7 @@ GameObject:
   - component: {fileID: 2082912514}
   - component: {fileID: 2082912513}
   - component: {fileID: 2082912512}
+  - component: {fileID: 2082912516}
   m_Layer: 5
   m_Name: StatusPanel
   m_TagString: Untagged
@@ -2822,6 +2802,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082912510}
   m_CullTransparentMesh: 1
+--- !u!114 &2082912516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082912510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a064b59c95052d04ab8724cd728dd310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyRenderText: {fileID: 616478523}
+  healthSlider: {fileID: 458862279}
+  policeSlider: {fileID: 567010698}
+  gameOverGroup: {fileID: 1998086040}
 --- !u!1 &2090359376
 GameObject:
   m_ObjectHideFlags: 0

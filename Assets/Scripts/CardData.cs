@@ -15,14 +15,7 @@ public class CardData : ScriptableObject {
     public void RunAction (bool wasSelected) {
         if (wasSelected) {
             if (selectActions != null && selectActions.Length > 0) {
-                bool canSelect = true;
-                foreach (CardAction action in selectActions) {
-                    if (!action.CanDoAction(this)) {
-                        canSelect = false;
-                        break;
-                    }
-                }
-                if (canSelect) {
+                if (CanSelect()) {
                     foreach (CardAction action in selectActions) {
                         action.DoAction(this);
                     }
@@ -37,6 +30,15 @@ public class CardData : ScriptableObject {
                 }
             }
         }
+    }
+
+    public bool CanSelect() {
+        foreach (CardAction action in selectActions) {
+            if (!action.CanDoAction(this)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public string GetFrontDescriptions() {

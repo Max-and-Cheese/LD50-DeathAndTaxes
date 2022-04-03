@@ -133,7 +133,5 @@ public class HealthUpdateEvent : UnityEvent<int> { }
 [System.Serializable]
 public class PoliceUpdateEvent : UnityEvent<int> { }
 
-
-
 [System.Serializable]
 public class DiscountUpdateEvent : UnityEvent<GameManager.CardType> { }
