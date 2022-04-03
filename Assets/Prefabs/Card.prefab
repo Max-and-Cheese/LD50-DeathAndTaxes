@@ -611,7 +611,7 @@ MonoBehaviour:
   cardDescription: {fileID: 1459215973325578645}
   cardBackDescription: {fileID: 6427944220309523048}
   cardImage: {fileID: 2778923300455723797}
-  data: {fileID: 11400000, guid: cd1fcfc1d2cada646aa0de4906e91ac4, type: 2}
+  data: {fileID: 11400000, guid: 628472d89e137514ea656dc46f72fe4d, type: 2}
   wasSelected: 0
 --- !u!1 &7618392850522919983
 GameObject:

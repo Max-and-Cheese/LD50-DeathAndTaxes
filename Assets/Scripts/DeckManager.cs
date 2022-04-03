@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class DeckManager : MonoBehaviour {
     public static DeckManager Instance { get; private set; }
 
+    public RectTransform cardPanel;
     [Serializable]
     public struct CardDataWeight {
         public CardData data;
@@ -14,6 +16,7 @@ public class DeckManager : MonoBehaviour {
     }
     public List<CardDataWeight> deckCards;
     public List<CardDataWeight> shitCards;
+
 
     public int cardsToGenerate = 3;
 
@@ -59,15 +62,19 @@ public class DeckManager : MonoBehaviour {
 
     public void ShuffleDeck() {
         foreach (Card card in cards) {
-            Destroy(card);
+            Destroy(card.gameObject);
         }
         cards.RemoveAll(c => true);
+
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(cardPanel);
+
         List<CardData> chosenCards = new List<CardData>();
         for (int i = 0; i < cardsToGenerate; i++) {
             chosenCards.Add(GetCardData(deckCards));
         }
         bool cantPickAny = true;
         foreach (CardData cardData in chosenCards) {
+            cardData.Setup();
             if (cardData.CanSelect()) {
                 cantPickAny = false;
                 break;
@@ -75,11 +82,13 @@ public class DeckManager : MonoBehaviour {
         }
         if (cantPickAny) {
             int rand = Random.Range(0, cardsToGenerate);
-            chosenCards[rand] = GetCardData(shitCards);
+            CardData shitData = GetCardData(shitCards);
+            shitData.Setup();
+            chosenCards[rand] = shitData;
         }
 
         foreach (CardData cardData in chosenCards) {
-            Card card = Instantiate(cardPrefab);
+            Card card = Instantiate(cardPrefab, transform.position, transform.rotation, transform);
             card.data = cardData;
             cards.Add(card);
             card.SetUpData();
