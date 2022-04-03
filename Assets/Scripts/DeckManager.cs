@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DeckManager : MonoBehaviour
-{
+public class DeckManager : MonoBehaviour {
     public static DeckManager Instance { get; private set; }
 
     [Serializable]
@@ -15,13 +14,13 @@ public class DeckManager : MonoBehaviour
     }
     public List<CardDataWeight> deckCards;
     public List<CardDataWeight> shitCards;
-    
+
     public int cardsToGenerate = 3;
-    
+
     public Card cardPrefab;
     public List<Card> cards;
 
-    public void RunAvoidedCards () {
+    public void RunAvoidedCards() {
         foreach (Card card in cards) {
             if (!card.wasSelected) {
                 card.RunCardActions(false);
@@ -34,8 +33,7 @@ public class DeckManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         ShuffleDeck();
     }
 
@@ -58,7 +56,6 @@ public class DeckManager : MonoBehaviour
 
         return selectedDataWeight.data;
     }
-
 
     public void ShuffleDeck() {
         foreach (Card card in cards) {
