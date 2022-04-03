@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52933182423e4e4285e42af87455146, type: 3}
-  m_Name: PayTaxes
+  m_Name: BribePolice
   m_EditorClassIdentifier: 
-  cardName: Pay Taxes
-  cardIcon: {fileID: 21300000, guid: a1a15dfe87ce3fb4f9e4e3f815c384c6, type: 3}
-  type: 1
+  cardName: Bribe Police
+  cardIcon: {fileID: 21300000, guid: 1c90b8ebe83fff843a905afed089422e, type: 3}
+  type: 2
   selectActions:
-  - {fileID: 11400000, guid: e03088e305835a540909d781a1679992, type: 2}
-  - {fileID: 11400000, guid: 1f0c3a9c6146cee4191f818d106c6525, type: 2}
+  - {fileID: 11400000, guid: 8948365c728d1e141813dbd4bb1ded2c, type: 2}
+  - {fileID: 11400000, guid: 41296e18680c5824ca369d8752c9a44e, type: 2}
   avoidActions:
-  - {fileID: 11400000, guid: 58d2abb0994cbb046ba0cec363a2c7b0, type: 2}
+  - {fileID: 11400000, guid: 2f7e98de9e2b83e4392254dc77201dc1, type: 2}

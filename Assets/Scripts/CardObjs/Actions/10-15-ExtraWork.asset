@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5f4b2c203c0554c99439c45c96110a, type: 3}
-  m_Name: 40-DecreasePolice
+  m_Script: {fileID: 11500000, guid: 5ca653181c99d444bad930977499053b, type: 3}
+  m_Name: 10-15-ExtraWork
   m_EditorClassIdentifier: 
-  minPoliceValue: -40
-  maxPoliceValue: -40
+  minExtraWork: 10
+  maxExtraWork: 15

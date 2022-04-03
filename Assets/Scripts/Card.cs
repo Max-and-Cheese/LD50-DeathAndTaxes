@@ -14,10 +14,9 @@ public class Card : MonoBehaviour {
     public TMP_Text cardDescription;
     public TMP_Text cardBackDescription;
     public Image cardImage;
-
     public CardData data;
 
-    public int randSeed;
+    public int RandSeed { get; private set; }
 
     public void SetUpData() {
         if (data) {
@@ -34,7 +33,7 @@ public class Card : MonoBehaviour {
     }
 
     public void GenerateSeed() {
-        randSeed = Random.Range(0, int.MaxValue);
+        RandSeed = Random.Range(0, int.MaxValue);
     }
 
     public void RunCardActions(bool wasSelected) {

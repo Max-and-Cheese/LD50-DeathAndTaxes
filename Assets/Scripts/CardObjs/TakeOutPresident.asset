@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52933182423e4e4285e42af87455146, type: 3}
-  m_Name: PayTaxes
+  m_Name: TakeOutPresident
   m_EditorClassIdentifier: 
-  cardName: Pay Taxes
-  cardIcon: {fileID: 21300000, guid: a1a15dfe87ce3fb4f9e4e3f815c384c6, type: 3}
-  type: 1
+  cardName: Assasinate the President
+  cardIcon: {fileID: 21300000, guid: 5f41eb598b1482243bb7003c0987027c, type: 3}
+  type: 3
   selectActions:
-  - {fileID: 11400000, guid: e03088e305835a540909d781a1679992, type: 2}
-  - {fileID: 11400000, guid: 1f0c3a9c6146cee4191f818d106c6525, type: 2}
-  avoidActions:
-  - {fileID: 11400000, guid: 58d2abb0994cbb046ba0cec363a2c7b0, type: 2}
+  - {fileID: 11400000, guid: 36a07f0c5762efb40aa2514a4cabdf66, type: 2}
+  - {fileID: 11400000, guid: 179be8e627769dd47a7324890c8d1fe0, type: 2}
+  avoidActions: []
+  isUnique: 1

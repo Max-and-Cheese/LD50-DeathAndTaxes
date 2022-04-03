@@ -9,7 +9,11 @@ public class CardData : ScriptableObject {
     public GameManager.CardType type;
 
     public CardAction[] selectActions;
-    public CardAction[] avoidActions; 
+    public CardAction[] avoidActions;
+
+    public bool isUnique = false;
+
+    public bool isDepleted { get; private set; } = false;
 
     public void RunActions (bool wasSelected, Card card) {
         if (wasSelected) {
@@ -20,6 +24,7 @@ public class CardData : ScriptableObject {
                     }
                 }
             }
+            if (isUnique) isDepleted = true;
         }
         else {
             if (avoidActions != null && avoidActions.Length > 0) {

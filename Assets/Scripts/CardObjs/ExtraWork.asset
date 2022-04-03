@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52933182423e4e4285e42af87455146, type: 3}
-  m_Name: PayTaxes
+  m_Name: ExtraWork
   m_EditorClassIdentifier: 
-  cardName: Pay Taxes
-  cardIcon: {fileID: 21300000, guid: a1a15dfe87ce3fb4f9e4e3f815c384c6, type: 3}
-  type: 1
+  cardName: Work Overtime
+  cardIcon: {fileID: 21300000, guid: fa26c807c7bf68c4ab1ea50d9b935e91, type: 3}
+  type: 3
   selectActions:
-  - {fileID: 11400000, guid: e03088e305835a540909d781a1679992, type: 2}
-  - {fileID: 11400000, guid: 1f0c3a9c6146cee4191f818d106c6525, type: 2}
-  avoidActions:
-  - {fileID: 11400000, guid: 58d2abb0994cbb046ba0cec363a2c7b0, type: 2}
+  - {fileID: 11400000, guid: 58eacc7be5c7a3b409bd65c602fe34a2, type: 2}
+  - {fileID: 11400000, guid: 77d4ac72a861c4b4b811b577f71d1939, type: 2}
+  avoidActions: []
+  isUnique: 0

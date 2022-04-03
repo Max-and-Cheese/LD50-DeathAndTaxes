@@ -57,7 +57,12 @@ public class DeckManager : MonoBehaviour {
             randomNumber = randomNumber - dataWeight.weight;
         }
 
-        return selectedDataWeight.data;
+        CardData data = selectedDataWeight.data;
+        if (data.isDepleted) {
+            return GetCardData(dataWeights);
+        }
+
+        return data;
     }
 
     public void ShuffleDeck() {
@@ -69,8 +74,18 @@ public class DeckManager : MonoBehaviour {
         //LayoutRebuilder.ForceRebuildLayoutImmediate(cardPanel);
 
         List<CardData> chosenCards = new List<CardData>();
+        bool hasTax = false;
         for (int i = 0; i < cardsToGenerate; i++) {
-            chosenCards.Add(GetCardData(deckCards));
+            CardData data = GetCardData(deckCards);
+            while (data.type == GameManager.CardType.TAX) {
+                if (hasTax)
+                    data = GetCardData(deckCards);
+                else {
+                    hasTax = true;
+                    break;
+                }
+            }
+            chosenCards.Add(data);
         }
         foreach (CardData cardData in chosenCards) {
             InstantiateCard(cardData);
@@ -88,6 +103,11 @@ public class DeckManager : MonoBehaviour {
             Destroy(cards[rand].gameObject);
             cards[rand] = InstantiateCard(shitData);
         }
+
+        foreach (Card card in cards) {
+            ;
+        }
+
     }
 
     private Card InstantiateCard(CardData data) {

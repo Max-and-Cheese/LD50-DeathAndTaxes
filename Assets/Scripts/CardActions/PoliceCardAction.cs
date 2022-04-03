@@ -9,13 +9,17 @@ public class PoliceCardAction : CardAction
     public int maxPoliceValue;
 
     public int GetValue(Card card) {
-        return minPoliceValue + (card.randSeed % (maxPoliceValue + 1));
+        if (minPoliceValue == maxPoliceValue) return minPoliceValue;
+        return minPoliceValue + ((int)Mathf.Sign(maxPoliceValue))*(card.RandSeed % (Mathf.Abs(maxPoliceValue + 1)));
     }
 
     public override bool CanDoAction(Card data) { return true; }
 
     public override void DoAction(Card data) {
+        Debug.Log(GetValue(data));
+        Debug.Log(GameManager.Instance.Police);
         GameManager.Instance.Police += GetValue(data);
+        Debug.Log(GameManager.Instance.Police);
     }
 
     public override string GetDescription(Card data) {

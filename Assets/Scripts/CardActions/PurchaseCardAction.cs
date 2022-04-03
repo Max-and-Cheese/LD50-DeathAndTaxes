@@ -9,7 +9,7 @@ public class PurchaseCardAction : CardAction
     public int maxBasePrice; 
     
     public int GetPrice(Card card) {
-        int basePrice = minBasePrice + (card.randSeed%(maxBasePrice+1));
+        int basePrice = minBasePrice + (card.RandSeed%(maxBasePrice+1));
         return (int)(basePrice * GameManager.Instance.GetDiscountForType(card.data.type));
     }
 

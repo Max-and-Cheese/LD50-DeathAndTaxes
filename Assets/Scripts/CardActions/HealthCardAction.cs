@@ -9,7 +9,8 @@ public class HealthCardAction : CardAction
     public int maxHealthValue;
 
     public int GetValue(Card card) {
-        return minHealthValue + (card.randSeed % (maxHealthValue + 1));
+        if (minHealthValue == maxHealthValue) return minHealthValue;
+        return minHealthValue + ((int)Mathf.Sign(maxHealthValue)) * (card.RandSeed % (Mathf.Abs(maxHealthValue) + 1));
     }
 
     public override bool CanDoAction(Card data) { return true; }

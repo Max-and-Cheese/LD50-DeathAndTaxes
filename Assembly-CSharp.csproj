@@ -65,11 +65,13 @@
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\StatusHandler.cs" />
     <Compile Include="Assets\Scripts\CardActions\DiscountCardAction.cs" />
+    <Compile Include="Assets\Scripts\EndOfDayManager.cs" />
     <Compile Include="Assets\Scripts\CardAction.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
-    <Compile Include="Assets\Scripts\EndOfDayManager.cs" />
+    <Compile Include="Assets\Scripts\CardActions\WorkCardAction.cs" />
+    <Compile Include="Assets\Scripts\CardActions\EffectHealthCardAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

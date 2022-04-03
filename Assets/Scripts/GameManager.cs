@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour {
 
     public int Money { get { return money; } private set { money = value; OnMoneyUpdated?.Invoke(value); } }
 
-    public int Health { get => health; set { if (value == 0) { EndGameDeath(); } else if (value > 0 && value <= 100) { health = value; OnHealthUpdated?.Invoke(value); } } }
+    public int Health { get => health; set { if (value == 0) { EndGameDeath(); } health = Mathf.Clamp(value, 0, 100); OnPoliceUpdated?.Invoke(health); } }
 
-    public int Police { get => police; set { if (value == 100) { EndGameCaught(); } else if (value >= 0 && value < 100) { police = value; OnPoliceUpdated?.Invoke(value); } } }
+    public int Police { get => police; set { if (value == 100) { EndGameCaught(); } police = Mathf.Clamp(value, 0,100); OnPoliceUpdated?.Invoke(police); } }
 
     public int Karma { get; set; }
 
@@ -27,9 +27,10 @@ public class GameManager : MonoBehaviour {
 
     public int DayCount { get; private set; } = 1;
 
-    public int RevenueOfDay { get; private set; }
-    public int DailyRevenue { get; set; } = 50;
+    public int RevenueOfDay { get; set; }
+    public int DailyRevenue { get; set; } = 10;
     public int DailyHealthLoss { get; set; } = 3;
+    public int DailyPoliceLoss { get; set; } = 5;
 
     public HealthUpdateEvent OnHealthUpdated;
     public PoliceUpdateEvent OnPoliceUpdated;
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour {
         HEALTH,
         TAX,
         POLICE,
-        CURSED,
+        MONEY,
         SHIT_CARD,
         CARD_EFFECT,
         STATUS_EFFECT,
@@ -115,7 +116,9 @@ public class GameManager : MonoBehaviour {
     }
 
     public void AddTemporalDiscount(CardType type, float discount, int turnLength) {
+        OnDiscountUpdated?.Invoke(type);
         AddDiscount(type, discount);
+        AddTimedAction(()=>AddDiscount(type, 1f/discount), turnLength);
     }
 
     public void ClearDiscount(CardType type) {
@@ -144,7 +147,7 @@ public class GameManager : MonoBehaviour {
         DeckManager.Instance.RunAvoidedCards();
         RevenueOfDay += DailyRevenue;
         
-        EndOfDayManager.Instance.ShowPanel();
+        DelayActionInmediate(()=>EndOfDayManager.Instance.ShowPanel(), 2);
 
         //change day
         turnClicks = 1;
@@ -154,6 +157,7 @@ public class GameManager : MonoBehaviour {
         CashInRevenueOfDay();
         DayCount++;
         Health -= DailyHealthLoss;
+        Police -= DailyPoliceLoss;
         DeckManager.Instance.ShuffleDeck();
         OpportunityController.Instance.AttemptOpportunity();
     }
@@ -183,8 +187,30 @@ public class GameManager : MonoBehaviour {
         timedActions.RemoveAll(ta=>runActions.Contains(ta));
 
     }
-    
 
+    // DELAYS
+
+    private float timer = 0;
+    private Action waitingAction;
+    private float waitSeconds = 0;
+    private void FixedUpdate() {
+        if (waitingAction != null) {
+            timer += Time.deltaTime;
+            if (timer >= waitSeconds) {
+                waitingAction();
+                waitingAction = null;
+                waitSeconds = 0;
+                timer = 0;
+            }
+        }
+    }
+
+    public void DelayActionInmediate(Action action, float seconds) {
+        if (waitingAction == null) {
+            waitingAction = action;
+            waitSeconds = seconds;
+        }
+    }
 
 }
 
@@ -200,7 +226,10 @@ public class PoliceUpdateEvent : UnityEvent<int> { }
 [System.Serializable]
 public class DiscountUpdateEvent : UnityEvent<GameManager.CardType> { }
 
+public delegate void Action();
+
 public class TimedAction {
+
     private int dayStarted;
     private int waitLength;
     private Action action;
@@ -215,11 +244,7 @@ public class TimedAction {
     }
 
     public void ExecuteAction() {
-        action.Execute();
+        action();
     }
 
-}
-
-public abstract class Action {
-    public abstract void Execute();
 }
