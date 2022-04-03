@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Card Action", menuName = "Cards/Actions/Karma Action")]
+[CreateAssetMenu(fileName = "New Card Action", menuName = "Cards/Actions/KarmaAction")]
 public class KarmaCardAction : CardAction
 {
     public int karmaValue;
+    
+    public override bool CanDoAction(Card data) { return true;}
 
-    public override void SetUpAction(CardData data) {}
-
-    public override bool CanDoAction(CardData data) { return true;}
-
-    public override void DoAction(CardData data) {
+    public override void DoAction(Card data) {
         GameManager.Instance.Karma += karmaValue;
     }
 
-    public override string GetDescription(CardData data) {
+    public override string GetDescription(Card data) {
         return (karmaValue > 0 ? "+":"-") + Mathf.Abs(karmaValue).ToString() + " karma";
     }
 

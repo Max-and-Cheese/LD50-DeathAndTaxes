@@ -11,12 +11,12 @@ public class CardData : ScriptableObject {
     public CardAction[] selectActions;
     public CardAction[] avoidActions; 
 
-    public void RunActions (bool wasSelected) {
+    public void RunActions (bool wasSelected, Card card) {
         if (wasSelected) {
             if (selectActions != null && selectActions.Length > 0) {
-                if (CanSelect()) {
+                if (CanSelect(card)) {
                     foreach (CardAction action in selectActions) {
-                        action.DoAction(this);
+                        action.DoAction(card);
                     }
                 }
             }
@@ -24,48 +24,35 @@ public class CardData : ScriptableObject {
         else {
             if (avoidActions != null && avoidActions.Length > 0) {
                 foreach (CardAction action in avoidActions) {
-                    if (action.CanDoAction(this))
-                        action.DoAction(this);
+                    if (action.CanDoAction(card))
+                        action.DoAction(card);
                 }
             }
         }
     }
 
-    public void Setup() {
-        for (int i=0; i<selectActions.Length; i++) {
-            selectActions[i] = Instantiate(selectActions[i]);
-            selectActions[i].SetUpAction(this);
-        }
-
-        for (int i = 0; i < avoidActions.Length; i++) {
-            avoidActions[i] = Instantiate(avoidActions[i]);
-            avoidActions[i].SetUpAction(this);
-        }
-
-    }
-
-    public bool CanSelect() {
+    public bool CanSelect(Card card) {
         foreach (CardAction action in selectActions) {
-            if (!action.CanDoAction(this)) {
+            if (!action.CanDoAction(card)) {
                 return false;
             }
         }
         return true;
     }
 
-    public string GetFrontDescriptions() {
-        return GetDesc(selectActions);
+    public string GetFrontDescriptions(Card card) {
+        return GetDesc(selectActions, card);
     }
 
-    public string GetBackDescriptions() {
-        return GetDesc(avoidActions);
+    public string GetBackDescriptions(Card card) {
+        return GetDesc(avoidActions, card);
     }
 
-    private string GetDesc(CardAction[] actions) {
+    private string GetDesc(CardAction[] actions, Card card) {
         string desc = "";
         bool first = true;
         foreach (CardAction action in actions) {
-            string actionDesc = action.GetDescription(this);
+            string actionDesc = action.GetDescription(card);
             if (first) first = false;
             else if (actionDesc.Length > 0) {
                 desc += "\n";

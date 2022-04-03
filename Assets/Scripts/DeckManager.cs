@@ -72,10 +72,12 @@ public class DeckManager : MonoBehaviour {
         for (int i = 0; i < cardsToGenerate; i++) {
             chosenCards.Add(GetCardData(deckCards));
         }
-        bool cantPickAny = true;
         foreach (CardData cardData in chosenCards) {
-            cardData.Setup();
-            if (cardData.CanSelect()) {
+            InstantiateCard(cardData);
+        }
+        bool cantPickAny = true;
+        foreach (Card card in cards) {
+            if (card.data.CanSelect(card)) {
                 cantPickAny = false;
                 break;
             }
@@ -83,15 +85,17 @@ public class DeckManager : MonoBehaviour {
         if (cantPickAny) {
             int rand = Random.Range(0, cardsToGenerate);
             CardData shitData = GetCardData(shitCards);
-            shitData.Setup();
-            chosenCards[rand] = shitData;
+            Destroy(cards[rand].gameObject);
+            cards[rand] = InstantiateCard(shitData);
         }
+    }
 
-        foreach (CardData cardData in chosenCards) {
-            Card card = Instantiate(cardPrefab, transform.position, transform.rotation, transform);
-            card.data = cardData;
-            cards.Add(card);
-            card.SetUpData();
-        }
+    private Card InstantiateCard(CardData data) {
+        Card card = Instantiate(cardPrefab, transform.position, transform.rotation, transform);
+        card.data = data;
+        cards.Add(card);
+        card.GenerateSeed();
+        card.SetUpData();
+        return card;
     }
 }

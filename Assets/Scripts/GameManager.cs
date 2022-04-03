@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
 
     public int RevenueOfDay { get; private set; }
     public int DailyRevenue { get; set; } = 50;
+    public int DailyHealthLoss { get; set; } = 3;
 
     public HealthUpdateEvent OnHealthUpdated;
     public PoliceUpdateEvent OnPoliceUpdated;
@@ -152,6 +153,7 @@ public class GameManager : MonoBehaviour {
     public void RestartDay() {
         CashInRevenueOfDay();
         DayCount++;
+        Health -= DailyHealthLoss;
         DeckManager.Instance.ShuffleDeck();
         OpportunityController.Instance.AttemptOpportunity();
     }

@@ -2,26 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Card Action", menuName = "Cards/Actions/Health Action")]
+[CreateAssetMenu(fileName = "New Card Action", menuName = "Cards/Actions/HealthAction")]
 public class HealthCardAction : CardAction
 {
     public int minHealthValue;
     public int maxHealthValue;
 
-    private int healthValue;
-
-    public override void SetUpAction(CardData data) {
-        healthValue = Random.Range(minHealthValue, maxHealthValue + 1);
+    public int GetValue(Card card) {
+        return minHealthValue + (card.randSeed % (maxHealthValue + 1));
     }
 
-    public override bool CanDoAction(CardData data) { return true; }
+    public override bool CanDoAction(Card data) { return true; }
 
-    public override void DoAction(CardData data) {
-        GameManager.Instance.Health += healthValue;
+    public override void DoAction(Card data) {
+        GameManager.Instance.Health += GetValue(data);
     }
 
-    public override string GetDescription(CardData data) {
-        return (healthValue > 0 ? "Increases":"Lowers") + " health by " + Mathf.Abs(healthValue).ToString();
+    public override string GetDescription(Card data) {
+        int value = GetValue(data);
+        return (value > 0 ? "Increases":"Lowers") + " health by " + Mathf.Abs(value).ToString();
     }
 
 }

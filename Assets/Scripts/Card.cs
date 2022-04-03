@@ -17,24 +17,29 @@ public class Card : MonoBehaviour {
 
     public CardData data;
 
+    public int randSeed;
+
     public void SetUpData() {
         if (data) {
-            data = Instantiate(data);
-            data.Setup();
             cardTitle.text = data.cardName;
-            cardDescription.text = data.GetFrontDescriptions();
-            cardBackDescription.text = data.GetBackDescriptions();
+            cardDescription.text = data.GetFrontDescriptions(this);
+            cardBackDescription.text = data.GetBackDescriptions(this);
             cardImage.sprite = data.cardIcon;
         }
     }
     
     void Start() {
+        GenerateSeed();
         SetUpData();
+    }
+
+    public void GenerateSeed() {
+        randSeed = Random.Range(0, int.MaxValue);
     }
 
     public void RunCardActions(bool wasSelected) {
         if (!wasSelected) Flip();
-        data.RunActions(wasSelected);
+        data.RunActions(wasSelected, this);
     }
 
     public bool wasSelected = false;
@@ -81,7 +86,7 @@ public class Card : MonoBehaviour {
     public void OnClicked() {
         if (GameManager.Instance.GAME_OVER) return;
         
-        if (data && data.CanSelect()) {
+        if (data && data.CanSelect(this)) {
             wasSelected = true;
             RunCardActions(true);
             GameManager.Instance.TurnClicks -= 1;

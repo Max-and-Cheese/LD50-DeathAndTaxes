@@ -2,26 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Card Action", menuName = "Cards/Actions/Police Action")]
+[CreateAssetMenu(fileName = "New Card Action", menuName = "Cards/Actions/PoliceAction")]
 public class PoliceCardAction : CardAction
 {
     public int minPoliceValue;
     public int maxPoliceValue;
 
-    private int policeValue;
-
-    public override void SetUpAction(CardData data) {
-        policeValue = Random.Range(minPoliceValue, maxPoliceValue + 1);
+    public int GetValue(Card card) {
+        return minPoliceValue + (card.randSeed % (maxPoliceValue + 1));
     }
 
-    public override bool CanDoAction(CardData data) { return true; }
+    public override bool CanDoAction(Card data) { return true; }
 
-    public override void DoAction(CardData data) {
-        GameManager.Instance.Police += policeValue;
+    public override void DoAction(Card data) {
+        GameManager.Instance.Police += GetValue(data);
     }
 
-    public override string GetDescription(CardData data) {
-        return (policeValue > 0 ? "Increases":"Lowers") + " police attention by " + Mathf.Abs(policeValue).ToString();
+    public override string GetDescription(Card data) {
+        int value = GetValue(data);
+        return (value > 0 ? "Increases":"Lowers") + " police attention by " + Mathf.Abs(value).ToString();
     }
 
 }
