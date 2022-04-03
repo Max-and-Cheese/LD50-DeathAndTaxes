@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public int Police { get => police; set { if (value == 100) { EndGameCaught(); } else if (value >= 0 && value < 100) { police = value; OnPoliceUpdated?.Invoke(value); } } }
 
+    public int Karma { get; set; }
+
     public bool GAME_OVER = false;
 
     public HealthUpdateEvent OnHealthUpdated;
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
         CURSED
     };
 
-    private Dictionary<CardType, float> activeDiscounts;
+    private Dictionary<CardType, float> activeDiscounts = new Dictionary<CardType, float>();
 
     public float GetDiscountForType (CardType type) {
         bool isDiscount = activeDiscounts.TryGetValue(type, out float discount);

@@ -16,8 +16,9 @@ public class Card : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         if (data) {
+            data.Setup();
             cardTitle.text = data.cardName;
-            cardDescription.text = data.cardDescription;
+            cardDescription.text = data.GetFrontDescriptions();
             cardImage.sprite = data.cardIcon;
         }
     }
@@ -30,8 +31,15 @@ public class Card : MonoBehaviour {
     public void OnClicked() {
         if (GameManager.Instance.GAME_OVER) return;
 
-        if (data.CanSelect()) {
+        if (data) {
+            data.Setup();
+            cardTitle.text = data.cardName;
+            cardDescription.text = data.GetFrontDescriptions();
+            cardImage.sprite = data.cardIcon;
+        }
 
+        if (data.CanSelect()) {
+            
         }
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ae0cb2540410304b9f89af336424a97, type: 3}
-  m_Name: 10-Purchase
+  m_Name: 10-100-Purchase
   m_EditorClassIdentifier: 
-  minBasePrice: 10
-  maxBasePrice: 10
+  minBasePrice: 50
+  maxBasePrice: 300

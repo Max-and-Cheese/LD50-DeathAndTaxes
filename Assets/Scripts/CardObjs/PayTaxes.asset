@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52933182423e4e4285e42af87455146, type: 3}
-  m_Name: Test Card
+  m_Name: PayTaxes
   m_EditorClassIdentifier: 
-  cardName: Meme
-  cardDescription: +20 Bruh
-  cardIcon: {fileID: 21300000, guid: 898ea0f2512b10e40b91c62e9208c9a1, type: 3}
-  type: 0
+  cardName: Pay Taxes
+  cardIcon: {fileID: 21300000, guid: a1a15dfe87ce3fb4f9e4e3f815c384c6, type: 3}
+  type: 1
   selectActions:
-  - {fileID: 11400000, guid: ed9337cd95d89ee4e80c56250ddd7a96, type: 2}
-  avoidActions: []
+  - {fileID: 11400000, guid: f6aca98480c66a74dae780ed9a0a8bb4, type: 2}
+  - {fileID: 11400000, guid: 5e7bc48ed45501349a9180f6e0ad95ae, type: 2}
+  avoidActions:
+  - {fileID: 11400000, guid: 96815960cde7f4647bf23cdd28d5a04d, type: 2}

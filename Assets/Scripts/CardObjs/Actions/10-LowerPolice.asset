@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae0cb2540410304b9f89af336424a97, type: 3}
-  m_Name: Test Card
+  m_Script: {fileID: 11500000, guid: ecc9ad2f031b63d4aa091b204403f0d3, type: 3}
+  m_Name: 10-LowerPolice
   m_EditorClassIdentifier: 
-  minBasePrice: 10
-  maxBasePrice: 20
+  minPoliceValue: -10
+  maxPoliceValue: -10

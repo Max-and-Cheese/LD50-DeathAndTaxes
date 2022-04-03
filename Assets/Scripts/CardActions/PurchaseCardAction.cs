@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Card Action", menuName = "Cards/Actions/Purchase Action")]
-public class CardActionPurchase : CardAction
+public class PurchaseCardAction : CardAction
 {
     public int minBasePrice;
     public int maxBasePrice;
@@ -27,7 +27,7 @@ public class CardActionPurchase : CardAction
     }
 
     public override string GetDescription(CardData data) {
-        return "- " + GetPrice(data).ToString() + "$";
+        return "Cost: " + GetPrice(data).ToString() + "$";
     }
 
 }

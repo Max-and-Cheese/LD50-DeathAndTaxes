@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card", menuName = "Cards/Card Data")]
 public class CardData : ScriptableObject {
     public string cardName;
-    public string cardDescription;
     public Sprite cardIcon;
     public GameManager.CardType type;
 
@@ -30,6 +29,15 @@ public class CardData : ScriptableObject {
                 }
             }
         }
+    }
+
+    public void Setup() {
+        foreach (CardAction action in selectActions) 
+            action.SetUpAction(this);
+        
+        foreach (CardAction action in avoidActions) 
+            action.SetUpAction(this);
+        
     }
 
     public bool CanSelect() {
@@ -58,6 +66,7 @@ public class CardData : ScriptableObject {
             else if (actionDesc.Length > 0) {
                 desc += "\n";
             }
+            desc += "• ";
             desc += actionDesc;
         }
         return desc;
