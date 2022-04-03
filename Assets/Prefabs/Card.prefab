@@ -276,15 +276,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pay Taxes
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 58ce4961c2b29fb4f918ab89ef547921, type: 2}
-  m_sharedMaterial: {fileID: -2123119711425155136, guid: 58ce4961c2b29fb4f918ab89ef547921, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 181d32c38ddfbf54d9485780970b9892, type: 2}
+  m_sharedMaterial: {fileID: -2123119711425155136, guid: 181d32c38ddfbf54d9485780970b9892, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279572250
-  m_fontColor: {r: 0.101960786, g: 0.09019608, b: 0.08235294, a: 1}
+    rgba: 4280560179
+  m_fontColor: {r: 0.1981132, g: 0.16615343, b: 0.13923994, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -647,8 +647,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.8848, y: -40.5744}
-  m_SizeDelta: {x: 89.6967, y: 52.5528}
+  m_AnchoredPosition: {x: 1.2420005, y: -40.5744}
+  m_SizeDelta: {x: 90.9823, y: 52.5528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8070828907404656674
 CanvasRenderer:
@@ -680,15 +680,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: -50$
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 58ce4961c2b29fb4f918ab89ef547921, type: 2}
-  m_sharedMaterial: {fileID: -2123119711425155136, guid: 58ce4961c2b29fb4f918ab89ef547921, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 181d32c38ddfbf54d9485780970b9892, type: 2}
+  m_sharedMaterial: {fileID: -2123119711425155136, guid: 181d32c38ddfbf54d9485780970b9892, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279572250
-  m_fontColor: {r: 0.103773594, g: 0.08996975, b: 0.080767184, a: 1}
+    rgba: 4280560179
+  m_fontColor: {r: 0.2, g: 0.16470589, b: 0.14117648, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -705,8 +705,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     private int turnClicks = 1;
     public int TurnClicks { get => turnClicks; set { turnClicks = value; if (value == 0) { TurnEnded(); } } }
+    
+    private int dayCount = 1;
 
     public HealthUpdateEvent OnHealthUpdated;
     public PoliceUpdateEvent OnPoliceUpdated;
