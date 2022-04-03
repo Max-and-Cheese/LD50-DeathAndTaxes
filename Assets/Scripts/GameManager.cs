@@ -64,10 +64,11 @@ public class GameManager : MonoBehaviour {
     public enum CardType {
         HEALTH,
         TAX,
+        POLICE,
+        CURSED,
+        SHIT_CARD,
         CARD_EFFECT,
         STATUS_EFFECT,
-        POLICE,
-        CURSED
     };
 
     private void Awake() {
@@ -140,7 +141,7 @@ public class GameManager : MonoBehaviour {
 
     private void TurnEnded() {
         DeckManager.Instance.RunAvoidedCards();
-        revenueOfDay += DailyRevenue;
+        RevenueOfDay += DailyRevenue;
 
         EndOfDayManager.Instance.ShowPanel();
 
@@ -157,8 +158,8 @@ public class GameManager : MonoBehaviour {
     }
 
     private void CashInRevenueOfDay() {
-        Money += revenueOfDay;
-        revenueOfDay = 0;
+        Money += RevenueOfDay;
+        RevenueOfDay = 0;
     }
 
 
