@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae0cb2540410304b9f89af336424a97, type: 3}
-  m_Name: 10-100-Purchase
+  m_Script: {fileID: 11500000, guid: 59beb7140cfff014db69460862b2bc00, type: 3}
+  m_Name: 66%-TaxDiscount
   m_EditorClassIdentifier: 
-  minBasePrice: 10
-  maxBasePrice: 100
+  type: 1
+  discount: 0.666
+  turnLength: -1

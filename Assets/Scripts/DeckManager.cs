@@ -12,6 +12,10 @@ public class DeckManager : MonoBehaviour
     }
     public List<CardDataWeight> deckCards;
 
+    public int cardsToGenerate = 3;
+
+    public List<Card> cards;
+
     // Start is called before the first frame update
     void Start()
     {
