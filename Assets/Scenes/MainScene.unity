@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1766270284}
     m_Modifications:
+    - target: {fileID: 4979054678807385276, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6743622733737623646, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}
       propertyPath: m_Name
       value: Card
@@ -325,6 +329,7 @@ GameObject:
   - component: {fileID: 26083662}
   - component: {fileID: 26083664}
   - component: {fileID: 26083663}
+  - component: {fileID: 26083665}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -389,6 +394,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26083661}
   m_CullTransparentMesh: 1
+--- !u!114 &26083665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26083661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef09ea5d56fbac24ca6c20ecb8f0ac5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  amount: 6
+  comparation: 0
+  shakePoint: 33
+  slider: {fileID: 458862279}
 --- !u!1 &55502616
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 55502617}
+  - component: {fileID: 55502618}
   m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
@@ -422,9 +445,26 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
-  m_SizeDelta: {x: -0.000015259, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &55502618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55502616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef09ea5d56fbac24ca6c20ecb8f0ac5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  amount: 6
+  comparation: 0
+  shakePoint: 33
+  slider: {fileID: 458862279}
 --- !u!224 &57669411 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8901504596384748461, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}
@@ -1779,7 +1819,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 65.1
+  m_Value: 45.3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2581,6 +2621,7 @@ GameObject:
   - component: {fileID: 807118409}
   - component: {fileID: 807118411}
   - component: {fileID: 807118410}
+  - component: {fileID: 807118412}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -2645,6 +2686,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807118408}
   m_CullTransparentMesh: 1
+--- !u!114 &807118412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807118408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef09ea5d56fbac24ca6c20ecb8f0ac5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  amount: 6
+  comparation: 1
+  shakePoint: 66
+  slider: {fileID: 567010698}
 --- !u!1 &938526358
 GameObject:
   m_ObjectHideFlags: 0
@@ -3491,6 +3549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376144745}
+  - component: {fileID: 1376144746}
   m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
@@ -3518,6 +3577,23 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000015258789, y: 0}
   m_SizeDelta: {x: 0.000045776, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1376144746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376144744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef09ea5d56fbac24ca6c20ecb8f0ac5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  amount: 6
+  comparation: 1
+  shakePoint: 66
+  slider: {fileID: 567010698}
 --- !u!1 &1443085380
 GameObject:
   m_ObjectHideFlags: 0
