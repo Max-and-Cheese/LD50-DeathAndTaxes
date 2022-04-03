@@ -39,8 +39,10 @@ public class DeckManager : MonoBehaviour {
     void Start() {
         ShuffleDeck();
     }
-
     public static CardData GetCardData(List<CardDataWeight> dataWeights) {
+        return GetCardData(dataWeights, new List<CardData>());
+    }
+    public static CardData GetCardData(List<CardDataWeight> dataWeights, List<CardData> skipCards) {
         int totalWeight = 0;
         foreach (CardDataWeight dataWeight in dataWeights)
             totalWeight += dataWeight.weight;
@@ -58,8 +60,8 @@ public class DeckManager : MonoBehaviour {
         }
 
         CardData data = selectedDataWeight.data;
-        if (data.isDepleted) {
-            return GetCardData(dataWeights);
+        if (data.isDepleted || skipCards.Contains(data)) {
+            return GetCardData(dataWeights, skipCards);
         }
 
         return data;
@@ -76,10 +78,10 @@ public class DeckManager : MonoBehaviour {
         List<CardData> chosenCards = new List<CardData>();
         bool hasTax = false;
         for (int i = 0; i < cardsToGenerate; i++) {
-            CardData data = GetCardData(deckCards);
+            CardData data = GetCardData(deckCards, chosenCards);
             while (data.type == GameManager.CardType.TAX) {
                 if (hasTax)
-                    data = GetCardData(deckCards);
+                    data = GetCardData(deckCards, chosenCards);
                 else {
                     hasTax = true;
                     break;
@@ -92,6 +94,7 @@ public class DeckManager : MonoBehaviour {
         }
         bool cantPickAny = true;
         foreach (Card card in cards) {
+            Debug.Log(card.data.cardName + " : " + card.data.CanSelect(card));
             if (card.data.CanSelect(card)) {
                 cantPickAny = false;
                 break;
@@ -103,10 +106,7 @@ public class DeckManager : MonoBehaviour {
             Destroy(cards[rand].gameObject);
             cards[rand] = InstantiateCard(shitData);
         }
-
-        foreach (Card card in cards) {
-            ;
-        }
+        
 
     }
 

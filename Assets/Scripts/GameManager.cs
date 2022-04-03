@@ -9,15 +9,15 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
-    private int money = 100;
+    private int money = 10;
     private int health = 100;
     private int police = 0;
 
     public int Money { get { return money; } private set { money = value; OnMoneyUpdated?.Invoke(value); } }
 
-    public int Health { get => health; set { if (value == 0) { EndGameDeath(); } health = Mathf.Clamp(value, 0, 100); OnPoliceUpdated?.Invoke(health); } }
+    public int Health { get => health; set { if (value == 0) { EndGameDeath(); } health = value; OnHealthUpdated?.Invoke(Mathf.Clamp(value, 0, 100)); } }
 
-    public int Police { get => police; set { if (value == 100) { EndGameCaught(); } police = Mathf.Clamp(value, 0,100); OnPoliceUpdated?.Invoke(police); } }
+    public int Police { get => police; set { if (value == 100) { EndGameCaught(); } police = value; OnPoliceUpdated?.Invoke(Mathf.Clamp(value, 0, 100)); } }
 
     public int Karma { get; set; }
 
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour {
     public PoliceUpdateEvent OnPoliceUpdated;
     public MoneyUpdateEvent OnMoneyUpdated;
     public DiscountUpdateEvent OnDiscountUpdated;
+    public UnityEvent OnDayEndEvent;
     public UnityEvent OnGameOverEvent;
 
     //If a negative value is inputed, the function acts like SpendMoney(int)
@@ -86,6 +87,8 @@ public class GameManager : MonoBehaviour {
             OnHealthUpdated = new HealthUpdateEvent();
         if (OnGameOverEvent == null)
             OnGameOverEvent = new UnityEvent();
+        if (OnDayEndEvent == null)
+            OnDayEndEvent = new UnityEvent();
     }
 
     void Start() {
@@ -150,16 +153,14 @@ public class GameManager : MonoBehaviour {
         RevenueOfDay += DailyRevenue;
         
         DelayActionInmediate(()=>EndOfDayManager.Instance.ShowPanel(), 2);
-
-        //change day
-        turnClicks = 1;
     }
 
     public void RestartDay() {
         CashInRevenueOfDay();
         DayCount++;
-        Health -= DailyHealthLoss;
-        Police -= DailyPoliceLoss;
+        Health = Mathf.Clamp(Health - DailyHealthLoss, 0, 100);
+        Police = Mathf.Clamp(Police - DailyPoliceLoss, 0, 100);
+        turnClicks = 1;
         DeckManager.Instance.ShuffleDeck();
         OpportunityController.Instance.AttemptOpportunity();
     }

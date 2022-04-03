@@ -21,7 +21,7 @@ public class HealthCardAction : CardAction
 
     public override string GetDescription(Card data) {
         int value = GetValue(data);
-        return (value > 0 ? "Increases":"Lowers") + " health by " + Mathf.Abs(value).ToString();
+        return (value > 0 ? "+":"-") + Mathf.Abs(value).ToString() + " health";
     }
 
 }

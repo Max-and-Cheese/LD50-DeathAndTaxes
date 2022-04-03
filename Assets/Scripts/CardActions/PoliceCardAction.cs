@@ -16,15 +16,12 @@ public class PoliceCardAction : CardAction
     public override bool CanDoAction(Card data) { return true; }
 
     public override void DoAction(Card data) {
-        Debug.Log(GetValue(data));
-        Debug.Log(GameManager.Instance.Police);
         GameManager.Instance.Police += GetValue(data);
-        Debug.Log(GameManager.Instance.Police);
     }
 
     public override string GetDescription(Card data) {
         int value = GetValue(data);
-        return (value > 0 ? "Increases":"Lowers") + " police attention by " + Mathf.Abs(value).ToString();
+        return (value > 0 ? "+" : "-") + Mathf.Abs(value).ToString() + " police attention";
     }
 
 }
