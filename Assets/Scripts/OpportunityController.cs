@@ -8,6 +8,9 @@ public class OpportunityController : MonoBehaviour {
     public static OpportunityController Instance { get; private set; }
 
     public RectTransform cardPanel;
+    public Card UIcard;
+    public CardData cardData;
+
     private float targetPosition = 0;
     private float duration = 3;
     private bool setToHide = false;
@@ -16,6 +19,9 @@ public class OpportunityController : MonoBehaviour {
     void Start()
     {
         Instance = this;
+        if (cardData) {
+            UpdateCard(cardData);
+        }
     }
 
     // Update is called once per frame
@@ -55,6 +61,17 @@ public class OpportunityController : MonoBehaviour {
 
     public void AttemptOpportunity() {
 
+    }
+
+    public void AcceptOportunity() {
+        PlayerHandManager.Instance.AddCardToHand(cardData);
+        HidePanel();
+    }
+
+    public void UpdateCard(CardData cardData) {
+        this.cardData = cardData;
+        UIcard.data = cardData;
+        UIcard.SetUpData();
     }
 
 }

@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class PlayerHandManager : MonoBehaviour {
 
+    public static PlayerHandManager Instance;
+
     public HorizontalLayoutGroup group;
     public RectTransform mainRect;
+    public GameObject cardPrefab;
+
+    List<CardData> playerHand;
 
     private int targetPadding = -100;
     private int targetSpacing = -150;
     private float duration = 3;
     // Start is called before the first frame update
     void Start() {
+        playerHand = new List<CardData>();
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -45,6 +52,25 @@ public class PlayerHandManager : MonoBehaviour {
             LayoutRebuilder.ForceRebuildLayoutImmediate(mainRect);
 
             yield return null;
+        }
+    }
+
+    public void AddCardToHand(CardData card) {
+        playerHand.Add(card);
+        UpdateHandUI();
+    }
+
+    private void UpdateHandUI() {
+        foreach (Transform card in group.gameObject.transform) {
+            Destroy(card.gameObject);
+        }
+
+        foreach (CardData card in playerHand) {
+            GameObject newCard = Instantiate(cardPrefab);
+            var cardComponent = newCard.GetComponent<Card>();
+            cardComponent.data = card;
+            cardComponent.SetUpData();
+            newCard.transform.SetParent(group.gameObject.transform, false);
         }
     }
 }
