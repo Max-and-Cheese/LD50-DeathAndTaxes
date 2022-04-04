@@ -794,12 +794,20 @@ MonoBehaviour:
     weight: 1
   - data: {fileID: 11400000, guid: 994d0250073f42243953bac0248c51df, type: 2}
     weight: 1
+  - data: {fileID: 11400000, guid: c2b9bb7822afd21469c4edf9483f5eac, type: 2}
+    weight: 1
   shitCards:
   - data: {fileID: 11400000, guid: 628472d89e137514ea656dc46f72fe4d, type: 2}
     weight: 2
   - data: {fileID: 11400000, guid: 5e59de17c168c1c4ab0ff653ab08f009, type: 2}
     weight: 4
   - data: {fileID: 11400000, guid: 994d0250073f42243953bac0248c51df, type: 2}
+    weight: 1
+  - data: {fileID: 11400000, guid: 53defaadea4c88c4f87654a456354fa3, type: 2}
+    weight: 4
+  - data: {fileID: 11400000, guid: 32c112d75074410439de09141cd67537, type: 2}
+    weight: 2
+  - data: {fileID: 11400000, guid: c2b9bb7822afd21469c4edf9483f5eac, type: 2}
     weight: 1
   cardsToGenerate: 3
   cardPrefab: {fileID: 5706730782434112195, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}

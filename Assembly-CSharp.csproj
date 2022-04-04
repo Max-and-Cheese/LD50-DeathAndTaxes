@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
     <Compile Include="Assets\Scripts\CardActions\InfiniteMoneyCardAction.cs" />
     <Compile Include="Assets\Scripts\CardActions\RealTimeHealthCardAction.cs" />
+    <Compile Include="Assets\Scripts\GameOverHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
