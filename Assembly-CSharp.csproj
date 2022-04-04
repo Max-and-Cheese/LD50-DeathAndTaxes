@@ -60,11 +60,14 @@
     <Compile Include="Assets\Scripts\OpportunityController.cs" />
     <Compile Include="Assets\Scripts\CardData.cs" />
     <Compile Include="Assets\Scripts\CardActions\PoliceCardAction.cs" />
+    <Compile Include="Assets\Scripts\CardActions\InfiniteMoneyCardAction.cs" />
+    <Compile Include="Assets\Scripts\GameOverHandler.cs" />
     <Compile Include="Assets\Scripts\CardActions\AddTurnsCardAction.cs" />
     <Compile Include="Assets\Scripts\CardActions\KarmaCardAction.cs" />
     <Compile Include="Assets\Scripts\DeckManager.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\StatusHandler.cs" />
+    <Compile Include="Assets\Scripts\CardActions\RealTimeHealthCardAction.cs" />
     <Compile Include="Assets\Scripts\CardActions\DiscountCardAction.cs" />
     <Compile Include="Assets\Scripts\EndOfDayManager.cs" />
     <Compile Include="Assets\Scripts\CardAction.cs" />
@@ -73,9 +76,8 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
-    <Compile Include="Assets\Scripts\CardActions\InfiniteMoneyCardAction.cs" />
-    <Compile Include="Assets\Scripts\CardActions\RealTimeHealthCardAction.cs" />
-    <Compile Include="Assets\Scripts\GameOverHandler.cs" />
+    <Compile Include="Assets\Scripts\CardActions\ExtraEarningsCardAction.cs" />
+    <Compile Include="Assets\Scripts\CardActions\AllMoneyPurchaseCardAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

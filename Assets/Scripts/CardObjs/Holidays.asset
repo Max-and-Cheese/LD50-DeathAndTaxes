@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52933182423e4e4285e42af87455146, type: 3}
-  m_Name: SellAnOrgan
+  m_Name: Holidays
   m_EditorClassIdentifier: 
-  cardName: Sell an Organ
-  cardIcon: {fileID: 21300000, guid: 521feecd4689d584c91fa127d6341d74, type: 3}
-  type: 4
+  cardName: Take some Holidays
+  cardIcon: {fileID: 21300000, guid: 1df59af325f87db4db8d1801059d51e9, type: 3}
+  type: 0
   selectActions:
-  - {fileID: 11400000, guid: f2c6d310c08f8af4f9bd9930b95b96f0, type: 2}
-  - {fileID: 11400000, guid: 703eded1e7fa78549931e7e5146077fc, type: 2}
+  - {fileID: 11400000, guid: c3e7035e4c79eec41ab458001572c0ca, type: 2}
+  - {fileID: 11400000, guid: 2df32d7350f1cb54f84e6b49ff1f5343, type: 2}
+  - {fileID: 11400000, guid: a1ab80e8f92ac9d48a0a77995758180b, type: 2}
   avoidActions: []
-  isUnique: 1
+  isUnique: 0

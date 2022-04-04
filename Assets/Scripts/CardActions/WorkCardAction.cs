@@ -9,7 +9,8 @@ public class WorkCardAction : CardAction {
     public int maxExtraWork;
 
     public int GetValue(Card card) {
-        return minExtraWork + (card.RandSeed % (maxExtraWork + 1));
+        if (minExtraWork == maxExtraWork) return minExtraWork;
+        return minExtraWork + (card.RandSeed % (maxExtraWork - minExtraWork + 1));
     }
 
     public override bool CanDoAction(Card card) { return true; }
@@ -19,6 +20,8 @@ public class WorkCardAction : CardAction {
     }
 
     public override string GetDescription(Card card) {
+        int value = GetValue(card);
+        if (value < 0) return GetValue(card).ToString() + "$ less at the end of the day";
         return "Extra " + GetValue(card).ToString() + "$ at the end of the day";
     }
 

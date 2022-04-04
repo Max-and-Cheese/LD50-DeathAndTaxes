@@ -13,6 +13,7 @@ public class DeckManager : MonoBehaviour {
     public struct CardDataWeight {
         public CardData data;
         public int weight;
+        public int minDay;
     }
     public List<CardDataWeight> deckCards;
     public List<CardDataWeight> shitCards;
@@ -47,19 +48,23 @@ public class DeckManager : MonoBehaviour {
 
     public static CardData GetCardData(List<CardDataWeight> dataWeights) {
         int totalWeight = 0;
-        foreach (CardDataWeight dataWeight in dataWeights)
-            totalWeight += dataWeight.weight;
+        int day = GameManager.Instance.DayCount;
+        foreach (CardDataWeight dataWeight in dataWeights) {
+            if (dataWeight.minDay <= day)
+                totalWeight += dataWeight.weight;
+        }
         
         int randomNumber = Random.Range(0, totalWeight);
 
         CardDataWeight selectedDataWeight = new CardDataWeight();
         foreach (CardDataWeight dataWeight in dataWeights) {
-            if (randomNumber < dataWeight.weight) {
-                selectedDataWeight = dataWeight;
-                break;
+            if (dataWeight.minDay <= day) {
+                if (randomNumber < dataWeight.weight) {
+                    selectedDataWeight = dataWeight;
+                    break;
+                }
+                randomNumber = randomNumber - dataWeight.weight;
             }
-
-            randomNumber = randomNumber - dataWeight.weight;
         }
 
         CardData data = selectedDataWeight.data;

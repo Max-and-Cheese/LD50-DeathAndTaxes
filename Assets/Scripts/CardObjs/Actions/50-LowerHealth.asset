@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69c8efa1b7701854f97d3ddbf0ef5f20, type: 3}
-  m_Name: 30-LowerHealth
+  m_Name: 50-LowerHealth
   m_EditorClassIdentifier: 
-  minHealthValue: -30
-  maxHealthValue: -30
+  minHealthValue: -50
+  maxHealthValue: -50
