@@ -116,24 +116,41 @@ public class DeckManager : MonoBehaviour {
 
     }
 
-    private void ReplaceCard (int index, CardData data) {
-        cards[index].data = data;
-        cards[index].GenerateSeed();
-        cards[index].SetUpData();
-    }
-
-    public void ReDrawCard(Card cardToRedraw) {
-        for (int i=0; i<cards.Count; i++) {
+    private void ReplaceCard (Card cardToRedraw) {
+        for (int i = 0; i < cards.Count; i++) {
             Card card = cards[i];
             if (card == cardToRedraw) {
                 CardData data = null;
-                while (data == null || data == card.data) {
+                bool isCardAlreadyThere = false;
+                while (data == null || data == card.data || isCardAlreadyThere) {
                     data = GetCardData(deckCards);
+                    foreach (Card existingCard in cards) {
+                        if (existingCard.data == data) isCardAlreadyThere = true;
+                    }
                 }
-                GameManager.Instance.DelayActionInmediate(()=>ReplaceCard(i, data), 1);
+                cards[i].data = data;
+                cards[i].GenerateSeed();
+                cards[i].SetUpData();
                 return;
             }
         }
+
+        
+    }
+    private void ReplaceAllCards() {
+        foreach (Card card in cards) {
+            ReplaceCard(card);
+        }
+    }
+
+    public void ReDrawCard(Card cardToRedraw) {
+        cardToRedraw.ParticlesBurnDelayed(0.5f);
+        GameManager.Instance.DelayActionInmediate(() => ReplaceCard(cardToRedraw), 1);
+    }
+
+    public void ReDrawAll() {
+        foreach (Card card in cards) card.ParticlesBurnDelayed(0.5f);
+        GameManager.Instance.DelayActionInmediate(() => ReplaceAllCards(), 1);
     }
 
     private Card InstantiateCard(CardData data) {

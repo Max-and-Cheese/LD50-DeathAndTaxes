@@ -100,6 +100,7 @@ public class Card : MonoBehaviour {
                 if (timer >= timerTarget + particleLenght) {
                     burnParticles.Stop();
                     timerTarget = 0;
+                    timer = 0;
                     Back.SetActive(false);
                 }
             }
@@ -107,7 +108,7 @@ public class Card : MonoBehaviour {
     }
 
     public void ParticlesBurnDelayed(float seconds) {
-        timerTarget = seconds;
+        timerTarget = seconds + Random.Range(-0.1f, 0.1f);
     }
 
     public void OnClicked() {
@@ -118,7 +119,6 @@ public class Card : MonoBehaviour {
             if (isActive)
                 return;
             else {
-                ParticlesBurnDelayed(0.5f);
                 DeckManager.Instance.ReDrawCard(this);
                 manager.destroyNextCard = false;
             }
