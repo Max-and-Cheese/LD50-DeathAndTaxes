@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour {
     public UnityEvent OnDayEndEvent;
     public UnityEvent OnGameOverEvent;
 
+    public GameObject diabloVolume;
+
     //If a negative value is inputed, the function acts like SpendMoney(int)
     public bool AddMoney(int count) {
         if (count < 0)
