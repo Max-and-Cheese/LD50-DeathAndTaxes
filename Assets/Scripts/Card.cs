@@ -89,7 +89,7 @@ public class Card : MonoBehaviour {
 
     public void OnClicked() {
         GameManager manager = GameManager.Instance;
-        if (manager.GAME_OVER) return;
+        if (manager.GAME_OVER || manager.IsWaiting()) return;
         
         if (manager.destroyNextCard) {
             if (isActive)
@@ -98,9 +98,7 @@ public class Card : MonoBehaviour {
                 DeckManager.Instance.ReDrawCard(this);
                 manager.destroyNextCard = false;
             }
-        }
-
-        if (data && data.CanSelect(this)) {
+        } else if (data && data.CanSelect(this)) {
             wasSelected = true;
             RunCardActions(true);
             manager.TurnClicks -= 1;

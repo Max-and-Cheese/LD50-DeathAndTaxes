@@ -225,6 +225,10 @@ public class GameManager : MonoBehaviour {
     public bool lowerHealthInRealTime = false;
     public float decreaseSpeed = 1;
 
+    public bool IsWaiting() {
+        return waitingAction != null;
+    }
+
     private void FixedUpdate() {
         if (waitingAction != null) {
             actionTimer += Time.deltaTime;

@@ -116,16 +116,21 @@ public class DeckManager : MonoBehaviour {
 
     }
 
-    private void ReplaceCard (int index) {
-        Destroy(cards[index].gameObject);
-        cards[index] = InstantiateCard(GetCardData(deckCards));
+    private void ReplaceCard (int index, CardData data) {
+        cards[index].data = data;
+        cards[index].GenerateSeed();
+        cards[index].SetUpData();
     }
 
     public void ReDrawCard(Card cardToRedraw) {
         for (int i=0; i<cards.Count; i++) {
             Card card = cards[i];
             if (card == cardToRedraw) {
-                GameManager.Instance.DelayActionInmediate(()=>ReplaceCard(i), 1);
+                CardData data = null;
+                while (data == null || data == card.data) {
+                    data = GetCardData(deckCards);
+                }
+                GameManager.Instance.DelayActionInmediate(()=>ReplaceCard(i, data), 1);
                 return;
             }
         }
