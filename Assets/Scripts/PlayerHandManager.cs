@@ -57,6 +57,9 @@ public class PlayerHandManager : MonoBehaviour {
 
     public void AddCardToHand(CardData card) {
         playerHand.Add(card);
+        while (playerHand.Count >= 4) {
+            playerHand.RemoveAt(0);
+        }
         UpdateHandUI();
     }
 

@@ -315,8 +315,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPanel: {fileID: 1766270284}
-  UIcard: {fileID: 0}
+  UIcard: {fileID: 108812807}
   cardData: {fileID: 0}
+  oppportunityCards:
+  - data: {fileID: 11400000, guid: 02569a1435955504ab9c44902e7c7ff9, type: 2}
+    weight: 1
+    minDay: 0
+  - data: {fileID: 11400000, guid: 824c9bcb790f6744799e5214cf879ff5, type: 2}
+    weight: 1
+    minDay: 0
+  - data: {fileID: 11400000, guid: e206cf5f94e0f034385c544068b9ee6a, type: 2}
+    weight: 1
+    minDay: 0
   blackBackground: {fileID: 1003533172}
 --- !u!1 &26083661
 GameObject:
@@ -574,6 +584,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8901504596384748461, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}
   m_PrefabInstance: {fileID: 1491726228}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &108812807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5706730782434112195, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}
+  m_PrefabInstance: {fileID: 14536528}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e0f5bb609f9cb41aaf34deea333de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &118992337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,7 +1669,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 355913103}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 21009421}
+        m_TargetAssemblyTypeName: OpportunityController, Assembly-CSharp
+        m_MethodName: HidePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &355913103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3130,7 +3163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1003533173
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3821,7 +3854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: {fileID: 1443085382}
   mainRect: {fileID: 223980272}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 6743622733737623646, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}
 --- !u!1001 &1491726228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4001,7 +4034,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1601275275}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 21009421}
+        m_TargetAssemblyTypeName: OpportunityController, Assembly-CSharp
+        m_MethodName: AcceptOportunity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1601275275
 MonoBehaviour:
   m_ObjectHideFlags: 0

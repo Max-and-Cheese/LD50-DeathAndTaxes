@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static DeckManager;
 
 public class OpportunityController : MonoBehaviour {
 
@@ -11,23 +12,25 @@ public class OpportunityController : MonoBehaviour {
     public Card UIcard;
     public CardData cardData;
 
+    public List<CardDataWeight> oppportunityCards;
+
     public GameObject blackBackground;
     private float targetPosition = 0;
     private float duration = 3;
     private bool setToHide = false;
-    
-    void Awake(){
+
+    void Awake() {
         Instance = this;
         if (cardData) {
             UpdateCard(cardData);
         }
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update() {
 
-        blackBackground.SetActive(true);
-        gameObject.SetActive(false);
+        //blackBackground.SetActive(true);
     }
 
     void OnEnable() {
@@ -61,7 +64,11 @@ public class OpportunityController : MonoBehaviour {
     }
 
     public void AttemptOpportunity() {
-
+        if (Random.Range(0, 100) < 20) {
+            var card = DeckManager.GetCardData(oppportunityCards);
+            UpdateCard(card);
+            ShowPanel();
+        }
     }
 
     public void AcceptOportunity() {
