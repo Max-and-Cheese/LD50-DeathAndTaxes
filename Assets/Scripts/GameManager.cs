@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour {
     private int health = 100;
     private int police = 0;
 
-    public int Money { get { return money; } private set { money = value; OnMoneyUpdated?.Invoke(value); } }
+    public int Money { get { return infiniteMoney ? 9999 : money; } private set { money = value; OnMoneyUpdated?.Invoke(value); } }
+
+    public bool infiniteMoney = false;
 
     public int Health { get => health; set { if (value == 0) { EndGameDeath(); } health = value; OnHealthUpdated?.Invoke(Mathf.Clamp(value, 0, 100)); } }
 
@@ -152,13 +154,13 @@ public class GameManager : MonoBehaviour {
         DeckManager.Instance.RunAvoidedCards();
         RevenueOfDay += DailyRevenue;
         
-        DelayActionInmediate(()=>EndOfDayManager.Instance.ShowPanel(), 2);
+        DelayActionInmediate(()=>EndOfDayManager.Instance.ShowPanel(), lowerHealthInRealTime ? 0.5f : 2);
     }
 
     public void RestartDay() {
         CashInRevenueOfDay();
         DayCount++;
-        Health = Mathf.Clamp(Health - DailyHealthLoss, 0, 100);
+        Health = Mathf.Clamp(Health - (lowerHealthInRealTime? 0 : DailyHealthLoss), 0, 100);
         Police = Mathf.Clamp(Police - DailyPoliceLoss, 0, 100);
         turnClicks = 1;
         DeckManager.Instance.ShuffleDeck();
@@ -191,20 +193,29 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    // DELAYS
+    // REALTIME
 
-    private float timer = 0;
+    private float actionTimer = 0;
     private Action waitingAction;
     private float waitSeconds = 0;
+
+    private float healthTimer = 0;
+    public bool lowerHealthInRealTime = false;
+    public float decreaseSpeed = 1;
+
     private void FixedUpdate() {
         if (waitingAction != null) {
-            timer += Time.deltaTime;
-            if (timer >= waitSeconds) {
+            actionTimer += Time.deltaTime;
+            if (actionTimer >= waitSeconds) {
                 waitingAction();
                 waitingAction = null;
                 waitSeconds = 0;
-                timer = 0;
+                actionTimer = 0;
             }
+        }
+        if (lowerHealthInRealTime) {
+            healthTimer += Time.deltaTime * (DailyHealthLoss / 3f) * decreaseSpeed;
+            Health = 100 - ((int)healthTimer);
         }
     }
 
@@ -214,6 +225,8 @@ public class GameManager : MonoBehaviour {
             waitSeconds = seconds;
         }
     }
+
+
 
 }
 

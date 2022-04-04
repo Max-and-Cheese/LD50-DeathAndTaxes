@@ -13,8 +13,6 @@ public class CardData : ScriptableObject {
 
     public bool isUnique = false;
 
-    public bool isDepleted { get; private set; } = false;
-
     public void RunActions (bool wasSelected, Card card) {
         if (wasSelected) {
             if (selectActions != null && selectActions.Length > 0) {
@@ -24,7 +22,7 @@ public class CardData : ScriptableObject {
                     }
                 }
             }
-            if (isUnique) isDepleted = true;
+            if (isUnique) DeckManager.Instance.AddDepletedCard(this);
         }
         else {
             if (avoidActions != null && avoidActions.Length > 0) {

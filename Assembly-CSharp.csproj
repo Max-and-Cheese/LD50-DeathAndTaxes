@@ -53,6 +53,7 @@
     <UnityVersion>2020.3.32f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CardActions\WorkCardAction.cs" />
     <Compile Include="Assets\Scripts\PlayerHandManager.cs" />
     <Compile Include="Assets\Scripts\CardActions\HealthCardAction.cs" />
     <Compile Include="Assets\Scripts\CardActions\PurchaseCardAction.cs" />
@@ -67,12 +68,13 @@
     <Compile Include="Assets\Scripts\CardActions\DiscountCardAction.cs" />
     <Compile Include="Assets\Scripts\EndOfDayManager.cs" />
     <Compile Include="Assets\Scripts\CardAction.cs" />
+    <Compile Include="Assets\Scripts\CardActions\EffectHealthCardAction.cs" />
+    <Compile Include="Assets\Scripts\SliderShaker.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
-    <Compile Include="Assets\Scripts\CardActions\WorkCardAction.cs" />
-    <Compile Include="Assets\Scripts\CardActions\EffectHealthCardAction.cs" />
-    <Compile Include="Assets\SliderShaker.cs" />
+    <Compile Include="Assets\Scripts\CardActions\InfiniteMoneyCardAction.cs" />
+    <Compile Include="Assets\Scripts\CardActions\RealTimeHealthCardAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

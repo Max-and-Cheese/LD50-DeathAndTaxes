@@ -17,6 +17,10 @@ public class DeckManager : MonoBehaviour {
     public List<CardDataWeight> deckCards;
     public List<CardDataWeight> shitCards;
 
+    private List<CardData> depletedCards;
+    public void AddDepletedCard (CardData data) {
+        depletedCards.Add(data);
+    }
 
     public int cardsToGenerate = 3;
 
@@ -37,16 +41,15 @@ public class DeckManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        depletedCards = new List<CardData>();
         ShuffleDeck();
     }
+
     public static CardData GetCardData(List<CardDataWeight> dataWeights) {
-        return GetCardData(dataWeights, new List<CardData>());
-    }
-    public static CardData GetCardData(List<CardDataWeight> dataWeights, List<CardData> skipCards) {
         int totalWeight = 0;
         foreach (CardDataWeight dataWeight in dataWeights)
             totalWeight += dataWeight.weight;
-
+        
         int randomNumber = Random.Range(0, totalWeight);
 
         CardDataWeight selectedDataWeight = new CardDataWeight();
@@ -60,9 +63,10 @@ public class DeckManager : MonoBehaviour {
         }
 
         CardData data = selectedDataWeight.data;
-        if (data.isDepleted || skipCards.Contains(data)) {
-            return GetCardData(dataWeights, skipCards);
-        }
+        //Debug.Log(skipCards.Contains(data));
+        //if (data.isDepleted || skipCards.Contains(data)) {
+        //    return GetCardData(dataWeights, skipCards);
+        //}
 
         return data;
     }
@@ -76,16 +80,10 @@ public class DeckManager : MonoBehaviour {
         //LayoutRebuilder.ForceRebuildLayoutImmediate(cardPanel);
 
         List<CardData> chosenCards = new List<CardData>();
-        bool hasTax = false;
         for (int i = 0; i < cardsToGenerate; i++) {
-            CardData data = GetCardData(deckCards, chosenCards);
-            while (data.type == GameManager.CardType.TAX) {
-                if (hasTax)
-                    data = GetCardData(deckCards, chosenCards);
-                else {
-                    hasTax = true;
-                    break;
-                }
+            CardData data = null;
+            while (data == null || depletedCards.Contains(data) || chosenCards.Contains(data)){
+                data = GetCardData(deckCards);
             }
             chosenCards.Add(data);
         }
@@ -102,7 +100,10 @@ public class DeckManager : MonoBehaviour {
         }
         if (cantPickAny) {
             int rand = Random.Range(0, cardsToGenerate);
-            CardData shitData = GetCardData(shitCards);
+            CardData shitData = null;
+            while (shitData == null || depletedCards.Contains(shitData)) {
+                shitData = GetCardData(shitCards);
+            }
             Destroy(cards[rand].gameObject);
             cards[rand] = InstantiateCard(shitData);
         }

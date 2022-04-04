@@ -14,6 +14,7 @@ public class SliderShaker : MonoBehaviour {
     public int shakePoint = 50;
 
     public Slider slider;
+    public bool shakeOnRealTimeHealth = false;
 
     Vector2 startingPos;
     RectTransform rectTransform;
@@ -37,26 +38,32 @@ public class SliderShaker : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        if (GameManager.Instance.lowerHealthInRealTime && shakeOnRealTimeHealth) {
+            Shake(true);
+        } else {
+            switch (comparation) {
+                case LOGIC_COMPARATION.LESS_THAN:
+                    if (slider.value < shakePoint) {
+                        Shake(false);
+                    }
+                    else {
+                        DefaultValues();
+                    }
+                    break;
+                case LOGIC_COMPARATION.MORE_THAN:
+                    if (slider.value > shakePoint) {
+                        Shake(false);
+                    }
+                    else {
+                        DefaultValues();
 
-        switch (comparation) {
-            case LOGIC_COMPARATION.LESS_THAN:
-            if (slider.value < shakePoint) {
-                Shake();
-            } else {
-                DefaultValues();
+                    }
+                    break;
+                default:
+                    break;
             }
-            break;
-            case LOGIC_COMPARATION.MORE_THAN:
-            if (slider.value > shakePoint) {
-                Shake();
-            } else {
-                DefaultValues();
-
-            }
-            break;
-            default:
-            break;
         }
+        
     }
 
     private void DefaultValues() {
@@ -64,9 +71,9 @@ public class SliderShaker : MonoBehaviour {
         LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
     }
 
-    private void Shake() {
-        
-        rectTransform.anchoredPosition = new Vector2(startingPos.x + Random.Range(-1f,1f) * amount * (shakePoint - slider.value) / 100, startingPos.y + Random.Range(-1f, 1f)  * amount * (shakePoint - slider.value) / 100);
+    private void Shake(bool alwaysShake) {
+        float valueMultiplier = alwaysShake ? 50 : (shakePoint - slider.value);
+        rectTransform.anchoredPosition = new Vector2(startingPos.x + Random.Range(-1f,1f) * amount * valueMultiplier / 100, startingPos.y + Random.Range(-1f, 1f)  * amount * valueMultiplier / 100);
         LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
     }
 

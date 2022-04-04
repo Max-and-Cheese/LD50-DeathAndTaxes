@@ -411,6 +411,7 @@ MonoBehaviour:
   comparation: 0
   shakePoint: 33
   slider: {fileID: 458862279}
+  shakeOnRealTimeHealth: 0
 --- !u!1 &55502616
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +466,7 @@ MonoBehaviour:
   comparation: 0
   shakePoint: 33
   slider: {fileID: 458862279}
+  shakeOnRealTimeHealth: 1
 --- !u!224 &57669411 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8901504596384748461, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}
@@ -779,12 +781,26 @@ MonoBehaviour:
   cardPanel: {fileID: 188834920}
   deckCards:
   - data: {fileID: 11400000, guid: cd1fcfc1d2cada646aa0de4906e91ac4, type: 2}
-    weight: 10
+    weight: 20
   - data: {fileID: 11400000, guid: 824c9bcb790f6744799e5214cf879ff5, type: 2}
+    weight: 4
+  - data: {fileID: 11400000, guid: 5512a537853e19a4ea4b523258a1c73d, type: 2}
     weight: 2
+  - data: {fileID: 11400000, guid: 02569a1435955504ab9c44902e7c7ff9, type: 2}
+    weight: 4
+  - data: {fileID: 11400000, guid: ece764cb26f3eee499ef53f1985a88d1, type: 2}
+    weight: 8
+  - data: {fileID: 11400000, guid: a2096751d25a21c42a24d1c3039bd71b, type: 2}
+    weight: 1
+  - data: {fileID: 11400000, guid: 994d0250073f42243953bac0248c51df, type: 2}
+    weight: 1
   shitCards:
   - data: {fileID: 11400000, guid: 628472d89e137514ea656dc46f72fe4d, type: 2}
+    weight: 2
+  - data: {fileID: 11400000, guid: 5e59de17c168c1c4ab0ff653ab08f009, type: 2}
     weight: 4
+  - data: {fileID: 11400000, guid: 994d0250073f42243953bac0248c51df, type: 2}
+    weight: 1
   cardsToGenerate: 3
   cardPrefab: {fileID: 5706730782434112195, guid: 57dc4d3934313eb4ab42be7854f48d68, type: 3}
   cards:
@@ -820,6 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69794d52a870c646b89489efc6007e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infiniteMoney: 0
   GAME_OVER: 0
   OnHealthUpdated:
     m_PersistentCalls:
@@ -833,9 +850,14 @@ MonoBehaviour:
   OnDiscountUpdated:
     m_PersistentCalls:
       m_Calls: []
+  OnDayEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnGameOverEvent:
     m_PersistentCalls:
       m_Calls: []
+  lowerHealthInRealTime: 0
+  decreaseSpeed: 1
 --- !u!4 &190552411
 Transform:
   m_ObjectHideFlags: 0
@@ -2703,6 +2725,7 @@ MonoBehaviour:
   comparation: 1
   shakePoint: 66
   slider: {fileID: 567010698}
+  shakeOnRealTimeHealth: 0
 --- !u!1 &938526358
 GameObject:
   m_ObjectHideFlags: 0
@@ -3594,6 +3617,7 @@ MonoBehaviour:
   comparation: 1
   shakePoint: 66
   slider: {fileID: 567010698}
+  shakeOnRealTimeHealth: 0
 --- !u!1 &1443085380
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,9 @@ public class StatusHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (manager.lowerHealthInRealTime) {
+            SetMoney(Random.Range(1000, 9999));
+        }
     }
 
     private void SetMoney(int money) {

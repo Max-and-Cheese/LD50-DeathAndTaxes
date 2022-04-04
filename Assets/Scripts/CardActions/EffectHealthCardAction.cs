@@ -12,8 +12,10 @@ public class EffectHealthCardAction : CardAction {
 
     public override void DoAction(Card data) {
         GameManager manager = GameManager.Instance;
-        manager.DailyHealthLoss -= healthModifier;
-        manager.AddTimedAction(()=> manager.DailyHealthLoss += healthModifier, turnLength);
+        if (manager.DailyHealthLoss > 1) {
+            manager.DailyHealthLoss -= healthModifier;
+            manager.AddTimedAction(() => manager.DailyHealthLoss += healthModifier, turnLength);
+        }
     }
 
     public override string GetDescription(Card data) {
