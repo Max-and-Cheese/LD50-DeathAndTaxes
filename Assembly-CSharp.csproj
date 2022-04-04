@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\CardActions\CallMomAction.cs" />
     <Compile Include="Assets\Scripts\CardActions\GuaranteeCardAction.cs" />
     <Compile Include="Assets\Scripts\CardActions\GetOutOfJailAction.cs" />
+    <Compile Include="Assets\Scripts\CardActions\BurnCardAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

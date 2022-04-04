@@ -317,6 +317,7 @@ MonoBehaviour:
   cardPanel: {fileID: 1766270284}
   UIcard: {fileID: 108812807}
   cardData: {fileID: 0}
+  oportunityChance: 20
   oppportunityCards:
   - data: {fileID: 11400000, guid: 02569a1435955504ab9c44902e7c7ff9, type: 2}
     weight: 5
@@ -954,6 +955,7 @@ MonoBehaviour:
   evadedTaxes: 0
   infiniteMoney: 0
   GAME_OVER: 0
+  destroyNextCard: 0
   OnHealthUpdated:
     m_PersistentCalls:
       m_Calls: []
@@ -983,7 +985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190552409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 230.64287, y: 88.714, z: -1243.4749}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
