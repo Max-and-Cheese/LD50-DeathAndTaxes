@@ -88,12 +88,22 @@ public class Card : MonoBehaviour {
     }
 
     public void OnClicked() {
-        if (GameManager.Instance.GAME_OVER) return;
+        GameManager manager = GameManager.Instance;
+        if (manager.GAME_OVER) return;
         
+        if (manager.destroyNextCard) {
+            if (isActive)
+                return;
+            else {
+                DeckManager.Instance.ReDrawCard(this);
+                manager.destroyNextCard = false;
+            }
+        }
+
         if (data && data.CanSelect(this)) {
             wasSelected = true;
             RunCardActions(true);
-            GameManager.Instance.TurnClicks -= 1;
+            manager.TurnClicks -= 1;
             if (isActive) {
                 PlayerHandManager.Instance.RemoveCard(transform.GetSiblingIndex());
             }

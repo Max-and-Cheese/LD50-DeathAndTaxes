@@ -12,6 +12,8 @@ public class OpportunityController : MonoBehaviour {
     public Card UIcard;
     public CardData cardData;
 
+    [Range(0, 100)]
+    public int oportunityChance = 20;
     public List<CardDataWeight> oppportunityCards;
 
     public GameObject blackBackground;
@@ -77,7 +79,7 @@ public class OpportunityController : MonoBehaviour {
         if (HasGuaranteedCard()) {
             card = guaranteedCard;
             guaranteedCard = null;
-        } else if (Random.Range(0, 100) < 20) {
+        } else if (Random.Range(0, 100) < oportunityChance) {
             card = DeckManager.GetCardData(oppportunityCards);
         }
         if (card != null) {

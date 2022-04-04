@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour {
     public int DailyHealthLoss { get; set; } = 3;
     public int DailyPoliceLoss { get; set; } = 5;
 
+    public bool destroyNextCard = false;
+
     public HealthUpdateEvent OnHealthUpdated;
     public PoliceUpdateEvent OnPoliceUpdated;
     public MoneyUpdateEvent OnMoneyUpdated;

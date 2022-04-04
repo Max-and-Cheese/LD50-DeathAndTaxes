@@ -116,6 +116,21 @@ public class DeckManager : MonoBehaviour {
 
     }
 
+    private void ReplaceCard (int index) {
+        Destroy(cards[index].gameObject);
+        cards[index] = InstantiateCard(GetCardData(deckCards));
+    }
+
+    public void ReDrawCard(Card cardToRedraw) {
+        for (int i=0; i<cards.Count; i++) {
+            Card card = cards[i];
+            if (card == cardToRedraw) {
+                GameManager.Instance.DelayActionInmediate(()=>ReplaceCard(i), 1);
+                return;
+            }
+        }
+    }
+
     private Card InstantiateCard(CardData data) {
         Card card = Instantiate(cardPrefab, transform.position, transform.rotation, transform);
         card.data = data;
