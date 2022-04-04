@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour {
         SHIT_CARD,
         CARD_EFFECT,
         STATUS_EFFECT,
+        GET_OUT_OF_JAIL,
+        MOM
     };
 
     private void Awake() {
@@ -143,8 +145,18 @@ public class GameManager : MonoBehaviour {
     }
 
     private void EndGameCaught() {
-        PlayerPrefs.SetString("cause", "The police threw your ass in jail!");
-        GameOver();
+        bool hasGTOJF = false;
+        foreach (Card card in PlayerHandManager.Instance.playerHand) {
+            if (card.data.type == CardType.GET_OUT_OF_JAIL) {
+                hasGTOJF = true;
+                card.RunCardActions(true);
+                PlayerHandManager.Instance.RemoveCard(card);
+            }
+        }
+        if (!hasGTOJF) {
+            PlayerPrefs.SetString("cause", "The police threw your ass in jail!");
+            GameOver();
+        }
     }
 
     private void GameOver() {

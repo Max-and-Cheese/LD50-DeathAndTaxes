@@ -63,12 +63,12 @@ public class CardData : ScriptableObject {
         bool first = true;
         foreach (CardAction action in actions) {
             string actionDesc = action.GetDescription(card);
-            if (first) first = false;
-            else if (actionDesc.Length > 0) {
-                desc += "\n";
+            if (actionDesc.Length > 0) {
+                if (first) first = false;
+                else desc += "\n";
+                desc += "• ";
+                desc += actionDesc;
             }
-            desc += "• ";
-            desc += actionDesc;
         }
         return desc;
     }

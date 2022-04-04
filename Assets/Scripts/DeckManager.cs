@@ -97,7 +97,7 @@ public class DeckManager : MonoBehaviour {
         }
         bool cantPickAny = true;
         foreach (Card card in cards) {
-            //Debug.Log(card.data.cardName + " : " + card.data.CanSelect(card));
+            Debug.Log(card.data.cardName + " : " + card.data.CanSelect(card));
             if (card.data.CanSelect(card)) {
                 cantPickAny = false;
                 break;

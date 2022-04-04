@@ -18,5 +18,6 @@ MonoBehaviour:
   selectActions:
   - {fileID: 11400000, guid: 23a15b967cf921441968b15514150909, type: 2}
   - {fileID: 11400000, guid: 58d2abb0994cbb046ba0cec363a2c7b0, type: 2}
+  - {fileID: 11400000, guid: 5142a2f924c200a4e9580a21e807f559, type: 2}
   avoidActions: []
   isUnique: 1

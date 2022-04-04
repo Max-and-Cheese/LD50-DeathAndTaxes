@@ -19,6 +19,15 @@ public class OpportunityController : MonoBehaviour {
     private float duration = 3;
     private bool setToHide = false;
 
+    private CardData guaranteedCard = null;
+
+    public void GuaranteeCard (CardData data) {
+        guaranteedCard = data;
+    }
+    public bool HasGuaranteedCard() {
+        return guaranteedCard != null;
+    }
+
     void Awake() {
         Instance = this;
         if (cardData) {
@@ -64,8 +73,14 @@ public class OpportunityController : MonoBehaviour {
     }
 
     public void AttemptOpportunity() {
-        if (Random.Range(0, 100) < 20) {
-            var card = DeckManager.GetCardData(oppportunityCards);
+        CardData card = null;
+        if (HasGuaranteedCard()) {
+            card = guaranteedCard;
+            guaranteedCard = null;
+        } else if (Random.Range(0, 100) < 20) {
+            card = DeckManager.GetCardData(oppportunityCards);
+        }
+        if (card != null) {
             UpdateCard(card);
             ShowPanel();
         }

@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52933182423e4e4285e42af87455146, type: 3}
-  m_Name: CallMom
+  m_Name: MomBirthday
   m_EditorClassIdentifier: 
-  cardName: Call Mom
-  cardIcon: {fileID: 21300000, guid: 3cb8a7839e3a68441843cec5da2eac19, type: 3}
+  cardName: Gift for your Mom
+  cardIcon: {fileID: 21300000, guid: 4eba9ab9b54c6f349959020c3d7b3f32, type: 3}
   type: 8
   selectActions:
-  - {fileID: 11400000, guid: 33d01573904878044ae3f389b77af1fd, type: 2}
-  avoidActions: []
+  - {fileID: 11400000, guid: 6a5970e94c9a0df4180827ea445743b8, type: 2}
+  - {fileID: 11400000, guid: d8118523ee1a93e48a97b3e0705ed3d1, type: 2}
+  avoidActions:
+  - {fileID: 11400000, guid: 44a14f3dba22e2c48bf6994c086b5005, type: 2}
   isUnique: 1

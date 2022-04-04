@@ -16,6 +16,6 @@ public class ExtraEarningsCardAction : CardAction {
     }
 
     public override string GetDescription(Card data) {
-        return "Gain an extra "+extraEarnings.ToString()+" per day";
+        return "Extra "+extraEarnings.ToString()+"$ per day";
     }
 }

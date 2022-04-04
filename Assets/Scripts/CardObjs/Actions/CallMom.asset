@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b38040a835e6304d81a72dbc3a211b9, type: 3}
-  m_Name: 1-ExtraEarnings
+  m_Script: {fileID: 11500000, guid: 3707a53bde40eef41babf49c2252b7d9, type: 3}
+  m_Name: CallMom
   m_EditorClassIdentifier: 
-  extraEarnings: 1
+  randMoney: 20
+  policeThreshold: 75
+  guaranteedCardOnThreshold: {fileID: 11400000, guid: 720f71c6671908c4fb847a67e1ba50f1, type: 2}
+  health: 10
+  police: -10

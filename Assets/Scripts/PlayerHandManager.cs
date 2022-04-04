@@ -10,21 +10,22 @@ public class PlayerHandManager : MonoBehaviour {
 
     public HorizontalLayoutGroup group;
     public RectTransform mainRect;
-    public GameObject cardPrefab;
+    public Card cardPrefab;
 
-    List<CardData> playerHand;
+    public List<Card> playerHand;
 
     private int targetPadding = -100;
     private int targetSpacing = -150;
     private float duration = 3;
     // Start is called before the first frame update
     void Start() {
-        playerHand = new List<CardData>();
+        ClearCards();
         Instance = this;
     }
 
     // Update is called once per frame
     void Update() {
+        
     }
 
     public void ShowHand() {
@@ -57,30 +58,39 @@ public class PlayerHandManager : MonoBehaviour {
     }
 
     public void AddCardToHand(CardData card) {
-        playerHand.Add(card);
+        playerHand.Add(InstantiateCard(card));
         while (playerHand.Count >= 4) {
             playerHand.RemoveAt(0);
         }
-        UpdateHandUI();
     }
 
-    private void UpdateHandUI() {
-        foreach (Transform card in group.gameObject.transform) {
+    private Card InstantiateCard(CardData data) {
+        Card card = Instantiate(cardPrefab, transform.position, transform.rotation, transform);
+        card.data = data;
+        card.GenerateSeed();
+        card.SetUpData();
+        card.isActive = true;
+        return card;
+    }
+
+    private void ClearCards() {
+        foreach (Card card in playerHand) {
             Destroy(card.gameObject);
         }
+        playerHand.RemoveAll(_ => true);
+    }
 
-        foreach (CardData card in playerHand) {
-            GameObject newCard = Instantiate(cardPrefab);
-            var cardComponent = newCard.GetComponent<Card>();
-            cardComponent.data = card;
-            cardComponent.isActive = true;
-            cardComponent.SetUpData();
-            newCard.transform.SetParent(group.gameObject.transform, false);
+    public void RemoveCard(Card targetCard) {
+        for (int i = 0; i < playerHand.Count; i++) {
+            if (playerHand[i].data == targetCard.data) {
+                RemoveCard(i);
+                return;
+            }
         }
     }
 
     internal void RemoveCard(int cardIndex) {
+        Destroy(playerHand[cardIndex].gameObject);
         playerHand.RemoveAt(cardIndex);
-        UpdateHandUI();
     }
 }

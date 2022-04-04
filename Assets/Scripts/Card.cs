@@ -26,6 +26,9 @@ public class Card : MonoBehaviour {
             cardDescription.text = data.GetFrontDescriptions(this);
             cardBackDescription.text = data.GetBackDescriptions(this);
             cardImage.sprite = data.cardIcon;
+            if (!isActive && !data.CanSelect(this)) {
+                cardTitle.color = Color.red;
+            }
         }
     }
     
