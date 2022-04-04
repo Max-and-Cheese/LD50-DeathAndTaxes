@@ -150,14 +150,17 @@ public class GameManager : MonoBehaviour {
 
     private void EndGameCaught() {
         bool hasGTOJF = false;
+        Card jailFree = null;
         foreach (Card card in PlayerHandManager.Instance.playerHand) {
             if (card.data.type == CardType.GET_OUT_OF_JAIL) {
                 hasGTOJF = true;
-                card.RunCardActions(true);
-                PlayerHandManager.Instance.RemoveCard(card);
+                jailFree = card;
             }
         }
-        if (!hasGTOJF) {
+        if (hasGTOJF) {
+            jailFree.RunCardActions(true);
+            PlayerHandManager.Instance.RemoveCard(jailFree);
+        } else {
             PlayerPrefs.SetString("cause", "The police threw your ass in jail!");
             GameOver();
         }
