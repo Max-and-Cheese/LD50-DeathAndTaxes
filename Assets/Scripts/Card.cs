@@ -16,6 +16,8 @@ public class Card : MonoBehaviour {
     public Image cardImage;
     public CardData data;
 
+    public bool isActive = false;
+
     public int RandSeed { get; private set; }
 
     public void SetUpData() {
@@ -89,6 +91,9 @@ public class Card : MonoBehaviour {
             wasSelected = true;
             RunCardActions(true);
             GameManager.Instance.TurnClicks -= 1;
+            if (isActive) {
+                PlayerHandManager.Instance.RemoveCard(transform.GetSiblingIndex());
+            }
         }
     }
 }

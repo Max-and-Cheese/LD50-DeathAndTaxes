@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,8 +73,14 @@ public class PlayerHandManager : MonoBehaviour {
             GameObject newCard = Instantiate(cardPrefab);
             var cardComponent = newCard.GetComponent<Card>();
             cardComponent.data = card;
+            cardComponent.isActive = true;
             cardComponent.SetUpData();
             newCard.transform.SetParent(group.gameObject.transform, false);
         }
+    }
+
+    internal void RemoveCard(int cardIndex) {
+        playerHand.RemoveAt(cardIndex);
+        UpdateHandUI();
     }
 }
