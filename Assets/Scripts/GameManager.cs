@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 
     public int Money { get { return infiniteMoney ? 9999 : money; } private set { money = value; OnMoneyUpdated?.Invoke(value); } }
 
+    public int evadedTaxes = 0;
+
     public bool infiniteMoney = false;
 
     public int Health { get => health; set { if (value == 0) { EndGameDeath(); } health = value; OnHealthUpdated?.Invoke(Mathf.Clamp(value, 0, 100)); } }
@@ -136,7 +138,7 @@ public class GameManager : MonoBehaviour {
     //GAME OVER AND RESET
 
     private void EndGameDeath() {
-        PlayerPrefs.SetString("cause", "Death finally caught on to you!");
+        PlayerPrefs.SetString("cause", "Death finally caught up to you!");
         GameOver();
     }
 
@@ -148,7 +150,7 @@ public class GameManager : MonoBehaviour {
     private void GameOver() {
         GAME_OVER = true;
         OnGameOverEvent?.Invoke();
-        PlayerPrefs.SetInt("money", money);
+        PlayerPrefs.SetInt("money", evadedTaxes);
         PlayerPrefs.SetInt("days", DayCount);
         SceneManager.LoadScene("GameOver");
     }

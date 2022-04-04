@@ -20,7 +20,7 @@ public class GameOverHandler : MonoBehaviour
         money = PlayerPrefs.GetInt("money");
         cause = PlayerPrefs.GetString("cause");
 
-        dayMoneyText.text = $"You lasted {days} days with ${money} in evaded taxes!";
+        dayMoneyText.text = $"You lasted {days} days having evaded {money}$ of taxes!";
         causeText.text = cause;
     }
 

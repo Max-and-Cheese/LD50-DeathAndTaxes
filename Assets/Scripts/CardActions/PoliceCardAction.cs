@@ -10,7 +10,7 @@ public class PoliceCardAction : CardAction
 
     public int GetValue(Card card) {
         if (minPoliceValue == maxPoliceValue) return minPoliceValue;
-        return minPoliceValue + ((int)Mathf.Sign(maxPoliceValue))*(card.RandSeed % (Mathf.Abs(maxPoliceValue + 1)));
+        return minPoliceValue + ((int)Mathf.Sign(maxPoliceValue))*(card.RandSeed % (Mathf.Abs(maxPoliceValue - minPoliceValue + 1)));
     }
 
     public override bool CanDoAction(Card data) { return true; }

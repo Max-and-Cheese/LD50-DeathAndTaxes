@@ -30,6 +30,13 @@ public class CardData : ScriptableObject {
                     if (action.CanDoAction(card))
                         action.DoAction(card);
                 }
+                if (type == GameManager.CardType.TAX) {
+                    foreach (CardAction action in selectActions) {
+                        if (action is PurchaseCardAction) {
+                            GameManager.Instance.evadedTaxes += ((PurchaseCardAction)action).GetPrice(card);
+                        }
+                    }
+                }
             }
         }
     }
