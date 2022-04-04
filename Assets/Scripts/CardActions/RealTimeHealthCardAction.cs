@@ -12,8 +12,10 @@ public class RealTimeHealthCardAction : CardAction {
     }
 
     public override void DoAction(Card data) {
-        GameManager.Instance.lowerHealthInRealTime = true;
-        GameManager.Instance.decreaseSpeed = decreaseSpeed;
+        GameManager manager = GameManager.Instance;
+        manager.lowerHealthInRealTime = true;
+        manager.decreaseSpeed = decreaseSpeed;
+        manager.diabloVolume.SetActive(true);
     }
 
     public override string GetDescription(Card data) {

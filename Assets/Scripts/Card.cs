@@ -15,6 +15,7 @@ public class Card : MonoBehaviour {
     public TMP_Text cardBackDescription;
     public Image cardImage;
     public CardData data;
+    public ParticleSystem burnParticles;
 
     public bool isActive = false;
 
@@ -52,6 +53,7 @@ public class Card : MonoBehaviour {
         targetRotation = 180;
         cardButton.interactable = false;
         StartCoroutine(FlipRoutine());
+        ParticlesBurnDelayed(0.75f);
     }
 
     private float targetRotation = 0;
@@ -87,6 +89,27 @@ public class Card : MonoBehaviour {
         
     }
 
+    private float timer;
+    private float timerTarget = 0;
+    private float particleLenght = 0.6f;
+    private void FixedUpdate() {
+        if (timerTarget > 0) {
+            timer += Time.deltaTime;
+            if (timer >= timerTarget) {
+                burnParticles.Play();
+                if (timer >= timerTarget + particleLenght) {
+                    burnParticles.Stop();
+                    timerTarget = 0;
+                    Back.SetActive(false);
+                }
+            }
+        }
+    }
+
+    public void ParticlesBurnDelayed(float seconds) {
+        timerTarget = seconds;
+    }
+
     public void OnClicked() {
         GameManager manager = GameManager.Instance;
         if (manager.GAME_OVER || manager.IsWaiting()) return;
@@ -95,6 +118,7 @@ public class Card : MonoBehaviour {
             if (isActive)
                 return;
             else {
+                ParticlesBurnDelayed(0.5f);
                 DeckManager.Instance.ReDrawCard(this);
                 manager.destroyNextCard = false;
             }
