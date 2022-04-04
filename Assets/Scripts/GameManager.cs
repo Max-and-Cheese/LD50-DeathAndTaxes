@@ -136,16 +136,20 @@ public class GameManager : MonoBehaviour {
     //GAME OVER AND RESET
 
     private void EndGameDeath() {
+        PlayerPrefs.SetString("cause", "Death finally caught on to you!");
         GameOver();
     }
 
     private void EndGameCaught() {
+        PlayerPrefs.SetString("cause", "The police threw your ass in jail!");
         GameOver();
     }
 
     private void GameOver() {
         GAME_OVER = true;
         OnGameOverEvent?.Invoke();
+        PlayerPrefs.SetInt("money", money);
+        PlayerPrefs.SetInt("days", DayCount);
         SceneManager.LoadScene("GameOver");
     }
 
