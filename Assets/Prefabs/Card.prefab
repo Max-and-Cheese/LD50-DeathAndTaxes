@@ -614,6 +614,7 @@ MonoBehaviour:
   cardImage: {fileID: 2778923300455723797}
   data: {fileID: 11400000, guid: 628472d89e137514ea656dc46f72fe4d, type: 2}
   burnParticles: {fileID: 601242204059524350}
+  textColor: {r: 0.2, g: 0.16470589, b: 0.14117648, a: 1}
   isActive: 0
   wasSelected: 0
 --- !u!1 &7618392850522919983

@@ -16,6 +16,7 @@ public class Card : MonoBehaviour {
     public Image cardImage;
     public CardData data;
     public ParticleSystem burnParticles;
+    public Color textColor;
 
     public bool isActive = false;
 
@@ -29,6 +30,8 @@ public class Card : MonoBehaviour {
             cardImage.sprite = data.cardIcon;
             if (!data.CanSelect(this) && OpportunityController.Instance.UIcard != this) {
                 cardTitle.color = Color.red;
+            } else {
+                cardTitle.color = textColor;
             }
         }
     }
