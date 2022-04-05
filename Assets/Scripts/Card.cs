@@ -125,7 +125,7 @@ public class Card : MonoBehaviour {
                 DeckManager.Instance.ReDrawCard(this);
                 manager.destroyNextCard = false;
             }
-        } else if (!wasSelected && data && data.CanSelect(this)) {
+        } else if (!wasSelected && data && data.CanSelect(this) && data.type != GameManager.CardType.GET_OUT_OF_JAIL) {
             wasSelected = true;
             RunCardActions(true);
             manager.TurnClicks -= 1;

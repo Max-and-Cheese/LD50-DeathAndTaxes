@@ -7,7 +7,7 @@ public class GetOutOfJailAction : CardAction {
 
     public int policeValue;
 
-    public override bool CanDoAction(Card data) { return false; }
+    public override bool CanDoAction(Card data) { return true; }
 
     public override void DoAction(Card data) {
        GameManager.Instance.Police = policeValue;

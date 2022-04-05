@@ -59,7 +59,8 @@ public class PlayerHandManager : MonoBehaviour {
 
     public void AddCardToHand(CardData card) {
         playerHand.Add(InstantiateCard(card));
-        while (playerHand.Count >= 4) {
+        while (playerHand.Count > 5) {
+            Destroy(playerHand[0].gameObject);
             playerHand.RemoveAt(0);
         }
     }

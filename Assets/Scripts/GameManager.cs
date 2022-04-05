@@ -149,15 +149,16 @@ public class GameManager : MonoBehaviour {
     }
 
     private void EndGameCaught() {
-        bool hasGTOJF = false;
+        bool hasGOOJF = false;
         Card jailFree = null;
         foreach (Card card in PlayerHandManager.Instance.playerHand) {
             if (card.data.type == CardType.GET_OUT_OF_JAIL) {
-                hasGTOJF = true;
+                hasGOOJF = true;
                 jailFree = card;
             }
         }
-        if (hasGTOJF) {
+        if (hasGOOJF) {
+            Police -= 50;
             jailFree.RunCardActions(true);
             PlayerHandManager.Instance.RemoveCard(jailFree);
         } else {
