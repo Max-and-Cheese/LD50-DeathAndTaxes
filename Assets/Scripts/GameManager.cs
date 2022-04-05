@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour {
 
     public bool infiniteMoney = false;
 
-    public int Health { get => health; set { if (value == 0) { EndGameDeath(); } health = value; OnHealthUpdated?.Invoke(Mathf.Clamp(value, 0, 100)); } }
+    public int Health { get => health; set { if (value == 0) { value = EndGameDeath(); } health = value; OnHealthUpdated?.Invoke(Mathf.Clamp(value, 0, 100)); } }
 
-    public int Police { get => police; set { if (value == 100) { EndGameCaught(); } police = value; OnPoliceUpdated?.Invoke(Mathf.Clamp(value, 0, 100)); } }
+    public int Police { get => police; set { if (value == 100) { value = EndGameCaught(); } police = value; OnPoliceUpdated?.Invoke(Mathf.Clamp(value, 0, 100)); } }
 
     public int Karma { get; set; }
 
@@ -143,12 +143,13 @@ public class GameManager : MonoBehaviour {
 
     //GAME OVER AND RESET
 
-    private void EndGameDeath() {
+    private int EndGameDeath() {
         PlayerPrefs.SetString("cause", "Death finally caught up to you!");
         GameOver();
+        return 0;
     }
 
-    private void EndGameCaught() {
+    private int EndGameCaught() {
         bool hasGOOJF = false;
         Card jailFree = null;
         foreach (Card card in PlayerHandManager.Instance.playerHand) {
@@ -158,13 +159,14 @@ public class GameManager : MonoBehaviour {
             }
         }
         if (hasGOOJF) {
-            Police -= 50;
             jailFree.RunCardActions(true);
             PlayerHandManager.Instance.RemoveCard(jailFree);
+            return 50;
         } else {
             PlayerPrefs.SetString("cause", "The police threw your ass in jail!");
             GameOver();
         }
+        return 0;
     }
 
     private void GameOver() {

@@ -317,7 +317,7 @@ MonoBehaviour:
   cardPanel: {fileID: 1766270284}
   UIcard: {fileID: 108812807}
   cardData: {fileID: 0}
-  oportunityChance: 100
+  oportunityChance: 20
   oppportunityCards:
   - data: {fileID: 11400000, guid: 02569a1435955504ab9c44902e7c7ff9, type: 2}
     weight: 5
