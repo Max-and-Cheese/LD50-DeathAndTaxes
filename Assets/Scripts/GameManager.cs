@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
-    private int money = 10;
+    private int money = 50;
     private int health = 100;
     private int police = 0;
 

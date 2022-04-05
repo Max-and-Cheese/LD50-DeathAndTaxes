@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5f4b2c203c0554c99439c45c96110a, type: 3}
   m_Name: 30-IncreasePolice
   m_EditorClassIdentifier: 
-  minPoliceValue: 90
-  maxPoliceValue: 90
+  minPoliceValue: 30
+  maxPoliceValue: 30
