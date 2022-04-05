@@ -96,6 +96,7 @@ public class OpportunityController : MonoBehaviour {
     public void UpdateCard(CardData cardData) {
         this.cardData = cardData;
         UIcard.data = cardData;
+        UIcard.GenerateSeed();
         UIcard.SetUpData();
     }
 

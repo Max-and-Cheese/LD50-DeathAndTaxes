@@ -116,41 +116,53 @@ public class DeckManager : MonoBehaviour {
 
     }
 
-    private void ReplaceCard (Card cardToRedraw) {
+    private void FindReplaceCard (Card cardToRedraw) {
         for (int i = 0; i < cards.Count; i++) {
             Card card = cards[i];
             if (card == cardToRedraw) {
-                CardData data = null;
-                bool isCardAlreadyThere = false;
-                while (data == null || data == card.data || isCardAlreadyThere) {
-                    data = GetCardData(deckCards);
-                    foreach (Card existingCard in cards) {
-                        if (existingCard.data == data) isCardAlreadyThere = true;
-                    }
-                }
-                cards[i].data = data;
-                cards[i].GenerateSeed();
-                cards[i].SetUpData();
-                return;
+                ReplaceCard(i);
             }
         }
-
-        
     }
+    private void ReplaceCard (int i) {
+        Card card = cards[i];
+        CardData data = null;
+        bool isCardAlreadyThere = false;
+        int a = 0;
+        while (data == null || data == card.data || isCardAlreadyThere) {
+            isCardAlreadyThere = false;
+            a++;
+            if (a > 20) {
+                data = GetCardData(shitCards);
+            } else if (a > 40) {
+                break;
+            }
+            data = GetCardData(deckCards);
+            foreach (Card existingCard in cards) {
+                if (existingCard.data == data) isCardAlreadyThere = true;
+            }
+        }
+        cards[i].data = data;
+        cards[i].GenerateSeed();
+        cards[i].SetUpData();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(cardPanel);
+        return;
+    }
+
     private void ReplaceAllCards() {
-        foreach (Card card in cards) {
-            ReplaceCard(card);
+        for (int i = 0; i<cards.Count; i++) {
+            ReplaceCard(i);
         }
     }
 
     public void ReDrawCard(Card cardToRedraw) {
-        cardToRedraw.ParticlesBurnDelayed(0.5f);
-        GameManager.Instance.DelayActionInmediate(() => ReplaceCard(cardToRedraw), 1);
+        cardToRedraw.ParticlesBurnDelayed(0.2f);
+        GameManager.Instance.DelayActionInmediate(() => FindReplaceCard(cardToRedraw), 0.7f);
     }
 
     public void ReDrawAll() {
-        foreach (Card card in cards) card.ParticlesBurnDelayed(0.5f);
-        GameManager.Instance.DelayActionInmediate(() => ReplaceAllCards(), 1);
+        foreach (Card card in cards) card.ParticlesBurnDelayed(0.2f);
+        GameManager.Instance.DelayActionInmediate(() => ReplaceAllCards(), 0.7f);
     }
 
     private Card InstantiateCard(CardData data) {

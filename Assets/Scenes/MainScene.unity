@@ -329,13 +329,13 @@ MonoBehaviour:
     weight: 1
     minDay: 0
   - data: {fileID: 11400000, guid: f454913e573f5d74792f760ec9242f2c, type: 2}
-    weight: 300
+    weight: 1
     minDay: 0
   - data: {fileID: 11400000, guid: 66a499dd675741f4684864a5b2fb78de, type: 2}
-    weight: 300
+    weight: 3
     minDay: 0
   - data: {fileID: 11400000, guid: 4420b2d88d3523049969b4b1bb88a2ef, type: 2}
-    weight: 300
+    weight: 3
     minDay: 0
   blackBackground: {fileID: 1003533172}
 --- !u!1 &26083661
@@ -881,7 +881,7 @@ MonoBehaviour:
     weight: 1
     minDay: 10
   - data: {fileID: 11400000, guid: c2b9bb7822afd21469c4edf9483f5eac, type: 2}
-    weight: 100
+    weight: 1
     minDay: 0
   - data: {fileID: 11400000, guid: 05f6234f69e5d9b4fa0ef954d7f20a8a, type: 2}
     weight: 1

@@ -27,7 +27,7 @@ public class Card : MonoBehaviour {
             cardDescription.text = data.GetFrontDescriptions(this);
             cardBackDescription.text = data.GetBackDescriptions(this);
             cardImage.sprite = data.cardIcon;
-            if (!isActive && !data.CanSelect(this)) {
+            if (!data.CanSelect(this) && OpportunityController.Instance.UIcard != this) {
                 cardTitle.color = Color.red;
             }
         }
@@ -122,7 +122,7 @@ public class Card : MonoBehaviour {
                 DeckManager.Instance.ReDrawCard(this);
                 manager.destroyNextCard = false;
             }
-        } else if (data && data.CanSelect(this)) {
+        } else if (!wasSelected && data && data.CanSelect(this)) {
             wasSelected = true;
             RunCardActions(true);
             manager.TurnClicks -= 1;

@@ -10,7 +10,7 @@ public class AddTurnsCardAction : CardAction
     public override bool CanDoAction(Card card) {
         int possibleCards = 0;
         foreach (Card cardSel in DeckManager.Instance.cards) {
-            if (cardSel.data.CanSelect(card)) possibleCards++;
+            if (cardSel.data.CanSelect(cardSel)) possibleCards++;
         }
         return possibleCards >= turnsAdded;
     }

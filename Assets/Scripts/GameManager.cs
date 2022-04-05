@@ -189,6 +189,8 @@ public class GameManager : MonoBehaviour {
         Police = Mathf.Clamp(Police - DailyPoliceLoss, 0, 100);
         turnClicks = 1;
         DeckManager.Instance.ShuffleDeck();
+        foreach (Card card in PlayerHandManager.Instance.playerHand) {card.SetUpData(); }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(PlayerHandManager.Instance.mainRect);
         OpportunityController.Instance.AttemptOpportunity();
     }
 
